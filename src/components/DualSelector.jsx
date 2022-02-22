@@ -1,29 +1,29 @@
-import emojiMenus from "./data";
+
 import { useState } from "react";
 
-const DualSelector = ({ titleName, isSelectedComponent }) => {
-  const [optionsArr, setOptionsArr] = useState(
-    emojiMenus.filter((val) => isSelectedComponent === val.visible)
-  );
-  const [saveOptionsArr, setSaveOptionsArr] = useState(
-    emojiMenus.filter((val) => isSelectedComponent === val.visible)
-  );
+const DualSelector = ({ titleName,optionsArr,saveOptionsArr,changeOptionsArr }) => {
+  
+  const [checkedItemCount,setCheckedItemCount] = useState(0)
 
   const checkValue = ({ target }) => {
     const res = saveOptionsArr.filter(({ name }) => {
       return name.includes(target.value);
     });
-    setOptionsArr(res);
+    changeOptionsArr(res);
   };
+  const selectTarget = (e)=>{
+    console.log(e.target)
+  }
   return (
     <div>
       <input type="text" onChange={checkValue}></input>
       <header>{titleName}</header>
       <ul>
         {optionsArr.map((val, idx) => (
-          <li key={idx}>{`${val.emoji} ${val.name}`}</li>
+          <li key={idx} onClick={selectTarget}>{`${val.emoji} ${val.name}`}</li>
         ))}
       </ul>
+      <div>{checkedItemCount}/{optionsArr.length}</div>
     </div>
   );
 };
