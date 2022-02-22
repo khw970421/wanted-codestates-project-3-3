@@ -8,7 +8,7 @@ const emojiMenus = [
       nameKo: "대시보드",
       route: "/dashboard",
       ordinal: 1,
-      visible: true,
+      visible: false,
       emoji: "🥁",
     },
     {
