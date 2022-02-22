@@ -52,15 +52,7 @@ function MoveBtn({
     const res = target.map((val) => {
       return { ...val, visible: true };
     });
-    let arr = [...availableSaveOptionsArr];
-    arr.filter((el) => {
-      for (let obj of target) {
-        console.log(el);
-        console.log(obj);
-        return el.name !== obj.name;
-      }
-    });
-    console.log(arr);
+
     // setAvailableOptionsArr([]);
     // setAvailableSaveOptionsArr([]);
     setSelectedOptionsArr([...selectedSaveOptionsArr, ...res]);
