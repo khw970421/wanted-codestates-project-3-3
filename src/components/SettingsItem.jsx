@@ -1,12 +1,9 @@
 import React, { useRef } from "react";
 
-const SettingsItem = ({ item, items, setItems }) => {
-  const title = item.title;
+const SettingsItem = ({ title, setItems }) => {
   const check = useRef();
   const clickCheckbox = () => {
-    console.log(check.current.checked);
-    const copy = [...items];
-    setItems(copy);
+    setItems(check.current.checked);
   };
 
   return (
