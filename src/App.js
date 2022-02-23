@@ -41,6 +41,7 @@ const App = () => {
           searchChecked={searchChecked}
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
+          selectedCheck={setSelectedItemsChecked}
         />
         <div>
           <button>
@@ -59,7 +60,7 @@ const App = () => {
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
           searchChecked={searchChecked}
-
+          selectedCheck={setSelectedItemsChecked}
         />
       </div>
       <Settings
