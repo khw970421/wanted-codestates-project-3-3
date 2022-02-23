@@ -6,6 +6,7 @@ const DualSelector = ({
   optionsArr,
   selectedArr,
   setSelectedArr,
+  saveArr,
   searchChecked,
   selectedCheck,
   screenSizeInput,
@@ -14,7 +15,8 @@ const DualSelector = ({
   onDragEnter,
   onDragStart,
   onDragOver,
-  id
+  id,
+  onChangeSearch
 }) => {
   // options는 props
   //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
@@ -24,15 +26,13 @@ const DualSelector = ({
 
   // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
   const searchValue = ({ target }) => {
-    const res = optionsArr.filter(({ name }) => {
+    
+    const res = saveArr.filter(({ name }) => {
       return name.includes(target.value);
     });
-    // setList(res);
+    console.log(res)
+    onChangeSearch(res)
   };
-  // useEffect(() => {
-  //   setList(optionsArr);
-  // }, [optionsArr]);
-
 
   useEffect(() => {
     document.addEventListener("mousedown", onBlurHandler);
@@ -45,8 +45,7 @@ const DualSelector = ({
     console.log(screenSizeInput);
     wrapperRef.current.style.width = `${screenSizeInput[0]}px`;
     wrapperRef.current.style.height = `${screenSizeInput[1]}px`;
-  }, [screenSizeInput])
-
+  }, [screenSizeInput]);
 
   const ctrlClick = (idx) => {
     // 이미 클릭 되어있는 item을 클릭할 때
@@ -154,9 +153,7 @@ const DualSelector = ({
           })}
         </ul>
         <div
-
           className={selectedCheck ? "selected-count" : "selected-count-hidden"}
-
         >
           <p>
             {selectedArr.length} / {optionsArr.length}

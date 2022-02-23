@@ -14,11 +14,17 @@ function MoveBtn({
   clickedselectedArr,
   setClickedAvailableArr,
   setClickedselectedArr,
+  availableSaveOptionsArr,
+  setAvailableSaveOptionsArr,
+  selectedSaveOptionsArr,
+  setSelectedSaveOptionsArr,
 }) {
   // 초기화
   const initialize = () => {
     setAvailableOptionsArr(emojiMenus.filter((val) => !val.visible));
     setSelectedOptionsArr(emojiMenus.filter((val) => val.visible));
+    setAvailableSaveOptionsArr(emojiMenus.filter((val) => !val.visible));
+    setSelectedSaveOptionsArr(emojiMenus.filter((val) => val.visible));
   };
 
   // selected options로 전체이동
@@ -28,7 +34,9 @@ function MoveBtn({
       return { ...el, visible: true };
     });
     setAvailableOptionsArr([]); // 왼쪽
+    setAvailableSaveOptionsArr([]);
     setSelectedOptionsArr([...selectedOptionsArr, ...res]); // 오른쪽
+    setSelectedSaveOptionsArr([...selectedOptionsArr, ...res]);
   };
 
   // available options로 전체이동
@@ -37,6 +45,8 @@ function MoveBtn({
       return { ...el, visible: false };
     });
     setSelectedOptionsArr([]);
+    setSelectedSaveOptionsArr([]);
+    setAvailableSaveOptionsArr([...availableOptionsArr, ...res]);
     setAvailableOptionsArr([...availableOptionsArr, ...res]);
   };
 
@@ -56,7 +66,9 @@ function MoveBtn({
       (el, index) => !clickedAvailableArr.includes(index)
     );
     setAvailableOptionsArr([...arr2]); // 왼쪽
+    setAvailableSaveOptionsArr([...arr2]);
     setSelectedOptionsArr([...selectedOptionsArr, ...res]); // 오른쪽 부분
+    setSelectedSaveOptionsArr([...selectedOptionsArr, ...res]); // 오른쪽 부분
 
     // 선택해제 => 빈배열
     setClickedAvailableArr([]);
@@ -75,7 +87,9 @@ function MoveBtn({
     const res = arr.map((el) => {
       return { ...el, visible: false };
     });
+    setAvailableSaveOptionsArr([...availableOptionsArr, ...res]);
     setAvailableOptionsArr([...availableOptionsArr, ...res]);
+    setSelectedSaveOptionsArr([...arr2]);
     setSelectedOptionsArr([...arr2]);
     // 선택해제 => 빈배열
     setClickedselectedArr([]);
