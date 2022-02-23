@@ -4,6 +4,7 @@ import InputText from "./InputText";
 import SettingsItem from "./SettingsItem";
 import InputRadio from './InputRadio'
 import '../scss/Settings.scss';
+
 import { HiCog } from "react-icons/hi";
 
 const Settings = (props) => {
@@ -16,25 +17,27 @@ const Settings = (props) => {
     itemSizeRadio,
     setItemSizeRadio,
     screenSizeInput,
-    setScreenSizeInput
+    setScreenSizeInput,
   } = props
 
   const [titleChecked, settitleCheck] = useState(false);
   const [showSetting, setShowSetting] = useState(false);
+
+
   return (
     <div className="settings-wrap">
-      <button onClick={()=>{setShowSetting(!showSetting)}} className="settings-btn">
+      <button onClick={() => { setShowSetting(!showSetting) }} className="settings-btn">
         <HiCog color="#333" size="20" />
       </button>
       <div className="settings">
         {
           showSetting
-          ?<div>
+          ? <div>
               <SettingsItem id={'title'} title={'타이틀'} setItems={settitleCheck} />
               {
                 titleChecked
-                ?<InputText textInput={titleInput} setTextInput={setTitleInput} />
-                :null
+                  ? <InputText textInput={titleInput} setTextInput={setTitleInput} />
+                  : null
               }
               <SettingsItem id={'search'} title={'검색'} setItems={setSearchChecked} />
               <SettingsItem id={'lift'} title={'하나씩만 옮기기'} setItems={setUnitMoveChecked} />
@@ -47,10 +50,10 @@ const Settings = (props) => {
               />
               <ChaingeSize
                 textInput={screenSizeInput}
-                setTextInput={setScreenSizeInput}                
+                setTextInput={setScreenSizeInput}
               />
-            </div> 
-          : null
+            </div>
+            : null
         }
       </div>
     </div>
