@@ -8,6 +8,7 @@
 
 .selector-content {
   border: 1px solid #ccc;
+  box-sizing: border-box;
   border-radius: 5px;
   width: 100%;
   height: 100%;
@@ -15,7 +16,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  overflow: auto;
+  overflow: hidden;
 
   header {
     margin-left: 10px;
@@ -36,16 +37,24 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: auto;
   border-bottom: 1px solid $light-grey;
+  margin-bottom: 41px;
 
   li {
     border-top: 1px solid $light-grey;
     font-size: 14px;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #ddd;
   }
 }
 
 .gray {
   background-color: #ddd;
+  color: #888;
 }
 
 .white {
@@ -69,6 +78,10 @@
   bottom: 0;
   text-align: center;
   display: block;
+  
+  p {
+    margin: 10px;
+  }
 }
 
 .hidden {

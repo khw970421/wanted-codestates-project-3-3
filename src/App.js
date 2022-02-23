@@ -1,5 +1,5 @@
 import DualSelector from "./components/DualSelector";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import emojiMenus from "./components/data";
 import "./scss/App.scss";
 import { HiChevronDoubleLeft } from "react-icons/hi";
@@ -107,14 +107,14 @@ const App = () => {
           onDragEnd={onDragEnd}
           id='availableSelector'
         />
-        <div>
+        {/* <div>
           <button>
             <HiChevronDoubleRight color='#333' size='18' />
           </button>
           <button>
             <HiChevronDoubleLeft color="#333" size="18" />
           </button>          
-        </div>
+        </div> */}
         <MoveBtn
           availableOptionsArr={availableOptionsArr}
           selectedOptionsArr={selectedOptionsArr}
