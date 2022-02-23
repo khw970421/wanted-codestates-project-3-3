@@ -8,9 +8,6 @@ import Settings from "./components/Settings";
 import MoveBtn from "./components/MoveBtn";
 
 const App = () => {
-  // titleName
-  const [availableName, setAvailableName] = useState("available options");
-  const [selectedName, setSelectedName] = useState("selected options");
   // available에서 검색 및 기본으로 사용하는 렌더링 값
   const [availableOptionsArr, setAvailableOptionsArr] = useState(
     emojiMenus.filter((val) => !val.visible)
@@ -23,10 +20,6 @@ const App = () => {
   // 왼쪽,오른쪽
   const [clickedAvailableArr, setClickedAvailableArr] = useState([]);
   const [clickedselectedArr, setClickedselectedArr] = useState([]);
-
-  // input에 따라 title 값 변경
-  const onChangeAvailable = ({ target }) => setAvailableName(target.value);
-  const onChangeSelected = ({ target }) => setSelectedName(target.value);
 
   // Settings
   const [titleChecked, settitleCheck] = useState(true);
@@ -44,10 +37,13 @@ const App = () => {
     <div id="App">
       <div className="center-box">
         <DualSelector
-          titleName={availableName}
+          title={titleInput[0]}
           optionsArr={availableOptionsArr}
+          searchChecked={searchChecked}
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
+          selectedCheck={setSelectedItemsChecked}
+          itemSizeRadio={itemSizeRadio}
         />
         <MoveBtn
           availableOptionsArr={availableOptionsArr}
@@ -59,11 +55,15 @@ const App = () => {
           setClickedAvailableArr={setClickedAvailableArr}
           setClickedselectedArr={setClickedselectedArr}
         />
+
         <DualSelector
-          titleName={selectedName}
+          title={titleInput[1]}
           optionsArr={selectedOptionsArr}
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
+          searchChecked={searchChecked}
+          selectedCheck={setSelectedItemsChecked}
+          itemSizeRadio={itemSizeRadio}
         />
       </div>
       <Settings

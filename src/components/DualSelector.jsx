@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import "../scss/dualSelector.scss";
 
 const DualSelector = ({
-  titleName,
+  title,
   optionsArr,
   selectedArr,
   setSelectedArr,
+  searchChecked,
+  selectedCheck,
+  itemSizeRadio,
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr); // 아이템 목록
@@ -26,12 +29,12 @@ const DualSelector = ({
     setList(optionsArr);
   }, [optionsArr]);
 
-  useEffect(() => {
-    document.addEventListener("mousedown", onBlurHandler);
-    return () => {
-      document.removeEventListener("mousedown", onBlurHandler);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", onBlurHandler);
+  //   return () => {
+  //     document.removeEventListener("mousedown", onBlurHandler);
+  //   };
+  // }, []);
   // 클릭 이벤트 ----------------------------------------------------------------------
   const ctrlClick = (idx) => {
     // 이미 클릭 되어있는 item을 클릭할 때
@@ -94,7 +97,7 @@ const DualSelector = ({
   };
 
   const onBlurHandler = (e) => {
-    if (e.target.classList[0] !== "stop-dragging") {
+    if (e.target.tagName !== "SPAN" && e.target.tagName !== "LI") {
       setSelectedArr([]);
     }
   };
@@ -127,42 +130,49 @@ const DualSelector = ({
 
   return (
     <div className="dual-selector-wrap">
-      <input type="text" onChange={searchValue}></input>
-      <header>{titleName}</header>
-      <ul>
-        {list?.map((option, idx) => {
-          const { id, emoji, nameKo } = option;
+      <input
+        type="text"
+        onChange={searchValue}
+        disabled={searchChecked ? true : false}
+        className="search-input"
+        placeholder="search"
+      />
+      <div className="selector-content">
+        <header>{title}</header>
+        <ul className="select-list">
+          {list?.map((option, idx) => {
+            const { emoji, nameKo } = option;
 
-          return (
-            <li
-              key={id}
-              className={
-                selectedArr.includes(idx)
-                  ? "stop-dragging gray"
-                  : "stop-dragging green"
-              }
-              onClick={(e) => onClickHandler(e, idx)}
-              onDragStart={(e) => onDragStart(e, idx)}
-              onDragEnter={(e) => onDragEnter(e, idx)}
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnd={onDragEnd}
-              draggable
-            >
-              {/* <button
+            return (
+              <li
+                key={idx}
                 className={
                   selectedArr.includes(idx)
-                    ? 'stop-dragging gray'
-                    : 'stop-dragging green'
+                    ? "stop-dragging gray"
+                    : "stop-dragging white"
                 }
                 onClick={(e) => onClickHandler(e, idx)}
+                onDragStart={(e) => onDragStart(e, idx)}
+                onDragEnter={(e) => onDragEnter(e, idx)}
+                onDragOver={(e) => e.preventDefault()}
+                onDragEnd={onDragEnd}
+                draggable
               >
-                {emoji}&nbsp;{nameKo}
-              </button> */}
-              {emoji}&nbsp;{nameKo}
-            </li>
-          );
-        })}
-      </ul>
+                <span className={itemSizeRadio}>
+                  {emoji}&nbsp;{nameKo}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+        <div
+          className={selectedCheck ? "selected-count" : "selected-count-hidden"}
+        >
+          <p>
+            {selectedArr.length} / {list.length}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
