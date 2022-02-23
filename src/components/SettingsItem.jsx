@@ -17,7 +17,7 @@ const SettingsItem = ({ title, setItems }) => {
           id="switch"
         />
         <label htmlFor="switch">
-          <div></div>
+          <div className="ball"></div>
         </label>
       </div>
     </div>

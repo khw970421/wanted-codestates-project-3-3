@@ -29,8 +29,9 @@ const App = () => {
   const [searchChecked, setSearchChecked] = useState(false);
   const [unitMoveChecked, setUnitMoveChecked] = useState(false);
   const [selectedItemsChecked, setSelectedItemsChecked] = useState(false);
-  const [itemSizeRadio, setItemSizeRadio] = useState('S');
+  const [itemSizeRadio, setItemSizeRadio] = useState('XS');
   const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
+
 
   return (
     <div id='App'>
@@ -42,6 +43,7 @@ const App = () => {
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
           selectedCheck={selectedItemsChecked}
+          itemSizeRadio={itemSizeRadio}
         />
         <div>
           <button>
@@ -58,6 +60,7 @@ const App = () => {
           setSelectedArr={setClickedselectedArr}
           searchChecked={searchChecked}
           selectedCheck={selectedItemsChecked}
+          itemSizeRadio={itemSizeRadio}
         />
       </div>
       <Settings
