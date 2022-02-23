@@ -46,7 +46,7 @@ const DualSelector = ({
 
   const ctrlClick = (idx) => {
     //setting 하나씩만옮기기
-    if (!unitMoveChecked) return;
+    if (unitMoveChecked) return;
     // 이미 클릭 되어있는 item을 클릭할 때
     if (selectedArr.includes(idx)) {
       const selected = selectedArr.filter((item) => idx !== item);
@@ -61,7 +61,7 @@ const DualSelector = ({
 
   const shiftClick = (idx) => {
     //setting 하나씩만옮기기
-    if (!unitMoveChecked) return;
+    if (unitMoveChecked) return;
 
     const selected = [];
     const len = selectedArr.length;
