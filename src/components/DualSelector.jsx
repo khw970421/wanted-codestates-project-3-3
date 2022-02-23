@@ -129,11 +129,12 @@ const DualSelector = ({
         type="text"
         onChange={searchValue}
         disabled={searchChecked ? true : false}
+        className="search-input"
         placeholder="search"
       />
       <div className="selector-content">
         <header>{title}</header>
-        <ul>
+        <ul className="select-list">
           {list?.map((option, idx) => {
             const { id, emoji, nameKo } = option;
 
@@ -168,7 +169,7 @@ const DualSelector = ({
           })}
         </ul>
         <div className={selectedCheck ? "selected-count" : "selected-count-hidden"}>
-          <p>{selectedOptions.length} / {list.length}</p>
+          <p>{selectedArr.length} / {list.length}</p>
         </div>
       </div>
     </div>
