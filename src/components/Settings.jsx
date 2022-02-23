@@ -11,8 +11,11 @@ const Settings = (props) => {
   const {
     titleInput,
     setTitleInput,
+    searchChecked,
     setSearchChecked,
+    unitMoveChecked,
     setUnitMoveChecked,
+    selectedItemsChecked,
     setSelectedItemsChecked,
     itemSizeRadio,
     setItemSizeRadio,
@@ -20,8 +23,8 @@ const Settings = (props) => {
     setScreenSizeInput,
   } = props;
 
-  const [titleChecked, settitleCheck] = useState(false);
-  const [showSetting, setShowSetting] = useState(false);
+  const [titleChecked, settitleCheck] = useState(true);
+  const [showSetting, setShowSetting] = useState(true);
 
   return (
     <div className="settings-wrap">
@@ -39,6 +42,7 @@ const Settings = (props) => {
             <SettingsItem
               id={"title"}
               title={"타이틀"}
+              item={titleChecked}
               setItems={settitleCheck}
             />
             {titleChecked ? (
@@ -47,16 +51,19 @@ const Settings = (props) => {
             <SettingsItem
               id={"search"}
               title={"검색"}
+              item={searchChecked}
               setItems={setSearchChecked}
             />
             <SettingsItem
               id={"lift"}
               title={"하나씩만 옮기기"}
+              item={unitMoveChecked}
               setItems={setUnitMoveChecked}
             />
             <SettingsItem
               id={"count"}
               title={"선택된 아이템 갯수 표시"}
+              item={selectedItemsChecked}
               setItems={setSelectedItemsChecked}
             />
             <InputRadio
