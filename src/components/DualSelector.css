@@ -1,0 +1,18 @@
+li {
+  cursor: grab;
+  padding: 10px 15px;
+  transition: transform 200ms ease 0s;
+}
+
+.grabbing {
+  cursor: grabbing;
+}
+
+.move_up {
+  transform: translate(0, -41px);
+}
+
+.move_down {
+  transform: translate(0, 41px);
+}
+
