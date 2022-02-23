@@ -1,0 +1,59 @@
+@import "App.scss";
+
+@mixin setting-box {
+  border-bottom: 1px solid $light-grey;
+  // background-color: cadetblue;
+  padding: 5px 8px;
+  font-size: 13px;
+}
+
+.settings-wrap {
+  position: absolute;
+  top: 1vw;
+  right: 2vw;
+}
+
+.settings-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.settings {
+  @include box-default;
+  margin-top: 30px;
+  right: 2vw;
+  // 
+  > div {
+    // padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.setting-item { 
+  @include setting-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting-title-item {
+  @include setting-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.setting-last-item {
+  padding: 5px 8px;
+  font-size: 13px;
+
+  div {
+    padding: 5px 0;
+  }
+}
+
+.size-input {
+  @include input-default;
+}

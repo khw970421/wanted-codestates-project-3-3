@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import '../scss/dualSelector.scss';
 
 const DualSelector = ({
   titleName,
@@ -121,7 +122,7 @@ const DualSelector = ({
   };
 
   return (
-    <div>
+    <div className="dual-selector-wrap">
       <input type="text" onChange={searchValue}></input>
       <header>{titleName}</header>
       <ul>

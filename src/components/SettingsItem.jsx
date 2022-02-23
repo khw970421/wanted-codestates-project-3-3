@@ -7,18 +7,16 @@ const SettingsItem = ({ title, setItems }) => {
   };
 
   return (
-    <div className="change-title">
+    <div className="setting-item">      
+      <p>{title}</p>
       <div>
-        <p>{title}</p>
-        <div>
-          <input
-            onClick={clickCheckbox}
-            ref={check}
-            type="checkbox"
-            id="switch"
-          />
-          <label htmlFor="switch"></label>
-        </div>
+        <input
+          onClick={clickCheckbox}
+          ref={check}
+          type="checkbox"
+          id="switch"
+        />
+        <label htmlFor="switch"></label>
       </div>
     </div>
   );
