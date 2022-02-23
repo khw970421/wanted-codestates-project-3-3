@@ -6,6 +6,8 @@ const DualSelector = ({
   optionsArr,
   selectedArr,
   setSelectedArr,
+  searchChecked
+
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr);
@@ -123,7 +125,7 @@ const DualSelector = ({
 
   return (
     <div className="dual-selector-wrap">
-      <input type="text" onChange={searchValue}></input>
+      <input type="text" onChange={searchValue} disabled={searchChecked ? true : false}></input>
       <header>{title}</header>
       <ul>
         {list?.map((option, idx) => {

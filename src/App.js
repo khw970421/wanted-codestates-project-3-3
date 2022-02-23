@@ -1,10 +1,11 @@
-import DualSelector from './components/DualSelector';
-import { useState } from 'react';
-import emojiMenus from './components/data';
-import './scss/App.scss';
-import { HiChevronDoubleLeft } from 'react-icons/hi';
-import { HiChevronDoubleRight } from 'react-icons/hi';
-import Settings from './components/Settings';
+import DualSelector from "./components/DualSelector";
+import { useState } from "react";
+import emojiMenus from "./components/data";
+import "./scss/App.scss";
+import { HiChevronDoubleLeft } from "react-icons/hi";
+import { HiChevronDoubleRight } from "react-icons/hi";
+import Settings from "./components/Settings";
+
 
 const App = () => {
   // available에서 검색 및 기본으로 사용하는 렌더링 값
@@ -15,6 +16,9 @@ const App = () => {
   const [selectedOptionsArr, setSelectedOptionsArr] = useState(
     emojiMenus.filter((val) => val.visible)
   );
+
+  const [clickedAvailableArr, setClickedAvailableArr] = useState([]);
+  const [clickedselectedArr, setClickedselectedArr] = useState([]);
 
   // Settings
   const [titleChecked, settitleCheck] = useState(true);
@@ -29,17 +33,18 @@ const App = () => {
   const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
 
   return (
-    <div id="App">
-      <div className="center-box">
+    <div id='App'>
+      <div className='center-box'>
         <DualSelector
-         title={titleInput[0]}
+          title={titleInput[0]}
           optionsArr={availableOptionsArr}
+          searchChecked={searchChecked}
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
         />
         <div>
           <button>
-            <HiChevronDoubleRight color="#333" size="18" />
+            <HiChevronDoubleRight color='#333' size='18' />
           </button>
           <button>
             <HiChevronDoubleLeft color="#333" size="18" />
@@ -49,10 +54,12 @@ const App = () => {
           <input onChange={onChangeSelected} value={selectedName} /> */}
         </div>
         <DualSelector
-          title={titleInput[1]} 
+          title={titleInput[1]}
           optionsArr={selectedOptionsArr}
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
+          searchChecked={searchChecked}
+
         />
       </div>
       <Settings
