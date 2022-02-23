@@ -24,7 +24,7 @@ const Settings = (props) => {
   } = props;
 
   const [titleChecked, settitleCheck] = useState(true);
-  const [showSetting, setShowSetting] = useState(true);
+  const [showSetting, setShowSetting] = useState(false);
 
   return (
     <div className="settings-wrap">
