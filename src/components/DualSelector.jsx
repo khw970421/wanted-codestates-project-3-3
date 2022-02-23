@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import '../scss/dualSelector.scss';
 
-const DualSelector = ({ titleName, optionsArr }) => {
+const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
   // options는 props
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [list, setList] = useState(optionsArr);
@@ -114,35 +114,45 @@ const DualSelector = ({ titleName, optionsArr }) => {
 
   return (
     <div className="dual-selector-wrap">
-      <input type="text" onChange={searchValue}></input>
-      <header>{titleName}</header>
-      <ul>
-        {list?.map((option, idx) => {
-          const { id, emoji, nameKo } = option;
+      <input
+        type="text"
+        onChange={searchValue}
+        className="search-input"
+        placeholder="search"
+      />              
+      <div className="selector-content">
+        <header>{titleName}</header>
+        <ul className="select-list">
+          {list?.map((option, idx) => {
+            const { id, emoji, nameKo } = option;
 
-          return (
-            <li
-              key={id}
-              onDragStart={(e) => onDragStart(e, idx)}
-              onDragEnter={(e) => onDragEnter(e, idx)}
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnd={onDragEnd}
-              draggable
-            >
-              <button
-                className={
-                  selectedOptions.includes(idx)
-                    ? "stop-dragging gray"
-                    : "stop-dragging green"
-                }
-                onClick={(e) => onClickHandler(e, idx)}
+            return (
+              <li
+                key={id}
+                onDragStart={(e) => onDragStart(e, idx)}
+                onDragEnter={(e) => onDragEnter(e, idx)}
+                onDragOver={(e) => e.preventDefault()}
+                onDragEnd={onDragEnd}
+                draggable
               >
-                {emoji}&nbsp;{nameKo}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+                <div
+                  className={
+                    selectedOptions.includes(idx)
+                      ? "stop-dragging gray"
+                      : "stop-dragging white"
+                  }
+                  onClick={(e) => onClickHandler(e, idx)}
+                >
+                  {emoji}&nbsp;{nameKo}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+        <div className={selectedCheck ? "selected-count" : "selected-count-hidden"}>
+          <p>{selectedOptions.length} / {list.length}</p>
+        </div>
+      </div>      
     </div>
   );
 };

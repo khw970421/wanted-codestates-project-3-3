@@ -41,6 +41,7 @@ const App = () => {
         <DualSelector
           titleName={availableName}
           optionsArr={availableOptionsArr}
+          selectedCheck={setSelectedItemsChecked}
         />
         <div>
           <button>
@@ -53,7 +54,11 @@ const App = () => {
           {/* <input onChange={onChangeAvailable} value={availableName} />
           <input onChange={onChangeSelected} value={selectedName} /> */}
         </div>
-        <DualSelector titleName={selectedName} optionsArr={selectedOptionsArr} />
+        <DualSelector
+          titleName={selectedName}
+          optionsArr={selectedOptionsArr}
+          selectedCheck={setSelectedItemsChecked}
+        />
       </div>
       <Settings 
         titleInput={titleInput}

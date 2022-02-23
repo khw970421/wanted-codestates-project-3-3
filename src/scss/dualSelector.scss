@@ -2,21 +2,53 @@
 
 .dual-selector-wrap {
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.selector-content {
   border: 1px solid #ccc;
   border-radius: 5px;
+  // CSS 가로 세로로 조절되어야하는 부분
   width: 200px;
+  height: 300px;
+  //
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  overflow: auto;
+
+  header {
+    margin-left: 10px;
+    margin-top: 10px;;
+    font-weight: bold;
+  }
 }
 
 .search-input {
-  @include input-default
+  @include input-default;
+  margin-bottom: 20px;
+}
+
+.select-list {  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid $light-grey;
+
+  li {
+    border-top: 1px solid $light-grey;
+    font-size: 14px;
+  }
 }
 
 .gray {
-  background-color: gray;
+  background-color: #ddd;
 }
 
-.green {
-  background-color: green;
+.white {
+  background-color: $white;
 }
 
 .stop-dragging {
@@ -24,5 +56,19 @@
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
-  user-select: none;
+  user-select: none;  
+  padding: 5px 8px;
+}
+
+.selected-count {
+  border-top: 1px solid $light-grey;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  display: block;
+}
+
+.selected-count-hidden {
+  display: none;
 }
