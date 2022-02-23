@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../scss/dualSelector.scss';
+import React, { useState, useEffect, useRef } from "react";
+import "../scss/dualSelector.scss";
 
 const DualSelector = ({
   title,
@@ -86,6 +86,7 @@ const DualSelector = ({
   };
 
   const onClickHandler = (e, idx) => {
+    // console.log(selectedArr);
     // ctrl 또는 command를 누르고 클릭 했을 때
     if (e.ctrlKey || e.metaKey) {
       ctrlClick(idx);
@@ -102,9 +103,9 @@ const DualSelector = ({
 
   const onBlurHandler = (e) => {
     if (
-      e.target.tagName !== 'SPAN' &&
-      e.target.tagName !== 'LI' &&
-      e.target.tagName !== 'BUTTON'
+      e.target.tagName !== "SPAN" &&
+      e.target.tagName !== "LI" &&
+      e.target.tagName !== "BUTTON"
     ) {
       setSelectedArr([]);
     }
