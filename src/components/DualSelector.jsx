@@ -153,7 +153,7 @@ const DualSelector = ({
           })}
         </ul>
         <div
-          className={selectedCheck ? "selected-count" : "selected-count-hidden"}
+          className={selectedCheck ? "selected-count" : "selected-count hidden"}
         >
           <p>
             {selectedArr.length} / {optionsArr.length}
