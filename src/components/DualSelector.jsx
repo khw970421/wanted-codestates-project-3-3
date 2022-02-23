@@ -8,7 +8,7 @@ const DualSelector = ({
   setSelectedArr,
   searchChecked,
   selectedCheck,
-  itemSizeRadio
+  itemSizeRadio,
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr);
@@ -93,7 +93,7 @@ const DualSelector = ({
   };
 
   const onBlurHandler = (e) => {
-    if (e.target.classList[0] !== 'stop-dragging') {
+    if (e.target.tagName !== 'SPAN' && e.target.tagName !== 'LI') {
       setSelectedArr([]);
     }
   };
@@ -137,11 +137,11 @@ const DualSelector = ({
         <header>{title}</header>
         <ul className="select-list">
           {list?.map((option, idx) => {
-            const { id, emoji, nameKo } = option;
+            const { emoji, nameKo } = option;
 
             return (
               <li
-                key={id}
+                key={idx}
                 className={
                   selectedArr.includes(idx)
                     ? 'stop-dragging gray'
@@ -154,13 +154,19 @@ const DualSelector = ({
                 onDragEnd={onDragEnd}
                 draggable
               >
-                <span className={itemSizeRadio}>{emoji}&nbsp;{nameKo}</span>
+                <span className={itemSizeRadio}>
+                  {emoji}&nbsp;{nameKo}
+                </span>
               </li>
             );
           })}
         </ul>
-        <div className={selectedCheck ? "selected-count" : "selected-count-hidden"}>
-          <p>{selectedArr.length} / {list.length}</p>
+        <div
+          className={selectedCheck ? 'selected-count' : 'selected-count-hidden'}
+        >
+          <p>
+            {selectedArr.length} / {list.length}
+          </p>
         </div>
       </div>
     </div>
