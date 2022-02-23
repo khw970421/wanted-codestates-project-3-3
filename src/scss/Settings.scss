@@ -57,3 +57,46 @@
 .size-input {
   @include input-default;
 }
+
+@mixin switch-box {
+  width: 44px;
+  height: 22px;
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+  transition: all .3s;
+}
+
+.switch-box {
+  @include switch-box;  
+  input:checked + label {
+    background-color: green;
+  }
+  label {
+    width: 44px;
+    height: 22px;
+    display: block;
+    background-color: $light-grey;
+    cursor: pointer;
+  }
+}
+
+.switch-checkbox {
+  display: none;
+
+  &:checked + .switch-label .ball {
+    transform: translateX(22px);
+  }
+}
+
+.ball {
+  background-color: $white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .3s;
+}
