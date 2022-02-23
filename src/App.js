@@ -1,6 +1,7 @@
 import DualSelector from "./components/DualSelector";
 import { useState } from "react";
 import emojiMenus from "./components/data";
+import './App.css'
 const App = () => {
   // titleName
   const [availableName, setAvailableName] = useState("available options");

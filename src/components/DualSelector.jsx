@@ -1,19 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import emojiMenus from './data';
+import React, { useState, useEffect } from "react";
+import emojiMenus from "./data";
 
-const DualSelector = ({ options = emojiMenus }) => {
+const DualSelector = ({ titleName,
+  optionsArr,
+  saveOptionsArr,
+  changeOptionsArr, }) => {
   // options는 props
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [checkedItemCount, setCheckedItemCount] = useState(0);
 
+  // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
+  const searchValue = ({ target }) => {
+    const res = saveOptionsArr.filter(({ name }) => {
+      return name.includes(target.value);
+    });
+    changeOptionsArr(res);
+  };
+
+  // Todo : 선택된 태그를 감지하는 핸들러로 선택된 것에 대한 체크 처리 필요
+  const selectTarget = (e) => {
+    console.log(e.target);
+  };
   useEffect(() => {
-    document.addEventListener('mousedown', onBlurHandler);
+    document.addEventListener("mousedown", onBlurHandler);
     return () => {
-      document.removeEventListener('mousedown', onBlurHandler);
+      document.removeEventListener("mousedown", onBlurHandler);
     };
   }, []);
 
   const ctrlClick = (idx) => {
-    console.log('ctrl');
+    console.log("ctrl");
     // 이미 클릭 되어있는 item을 클릭할 때
     if (selectedOptions.includes(idx)) {
       const selected = selectedOptions.filter((item) => idx !== item);
@@ -29,7 +45,7 @@ const DualSelector = ({ options = emojiMenus }) => {
   };
 
   const shiftClick = (idx) => {
-    console.log('shift');
+    console.log("shift");
 
     const len = selectedOptions.length;
     // 클릭된게 없으면 0번 부터 있으면 가장 처음 클릭 된 것
@@ -53,7 +69,7 @@ const DualSelector = ({ options = emojiMenus }) => {
   };
 
   const normalClick = (idx) => {
-    console.log('normal');
+    console.log("normal");
     setSelectedOptions([idx]);
   };
 
@@ -73,8 +89,8 @@ const DualSelector = ({ options = emojiMenus }) => {
   };
 
   const onBlurHandler = (e) => {
-    console.log('blur');
-    if (e.target.classList[0] !== 'stop-dragging') {
+    console.log("blur");
+    if (e.target.classList[0] !== "stop-dragging") {
       setSelectedOptions([]);
     }
   };
@@ -82,7 +98,7 @@ const DualSelector = ({ options = emojiMenus }) => {
   return (
     <div>
       <ul>
-        {options?.map((option, idx) => {
+        {optionsArr?.map((option, idx) => {
           const { id, emoji, nameKo } = option;
 
           return (
@@ -90,8 +106,8 @@ const DualSelector = ({ options = emojiMenus }) => {
               <button
                 className={
                   selectedOptions.includes(idx)
-                    ? 'stop-dragging gray'
-                    : 'stop-dragging green'
+                    ? "stop-dragging gray"
+                    : "stop-dragging green"
                 }
                 onClick={(e) => onClickHandler(e, idx)}
               >
@@ -105,4 +121,5 @@ const DualSelector = ({ options = emojiMenus }) => {
   );
 };
 
-export default DualSelector;
+
+export default DualSelector
