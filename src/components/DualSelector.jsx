@@ -10,13 +10,21 @@ const DualSelector = ({
   // options는 props
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [checkedItemCount, setCheckedItemCount] = useState(0);
+  const [list, setList] = useState(optionsArr);
+  //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
+  //드래깅 되는 아이템의 인덱스를 useRef객체의 current에 저장한다.
+  const dragItem = useRef();
+  // 드래깅 되어 지나가는 아이템들의 인덱스를 useRef 객체의 current에 저장한다.
+  const dragOverItem = useRef();
+
 
   // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
   const searchValue = ({ target }) => {
-    const res = saveOptionsArr.filter(({ name }) => {
+    const res = optionsArr.filter(({ name }) => {
       return name.includes(target.value);
     });
-    changeOptionsArr(res);
+    console.log(res,list)
+    setList(res);
   };
 
   // Todo : 선택된 태그를 감지하는 핸들러로 선택된 것에 대한 체크 처리 필요
@@ -98,12 +106,7 @@ const DualSelector = ({
   };
 
   //윤성님 코드
-  const [list, setList] = useState(optionsArr);
-  //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
-  //드래깅 되는 아이템의 인덱스를 useRef객체의 current에 저장한다.
-  const dragItem = useRef();
-  // 드래깅 되어 지나가는 아이템들의 인덱스를 useRef 객체의 current에 저장한다.
-  const dragOverItem = useRef();
+
 
   const onDragStart = (e, position) => {
     dragItem.current = position;
@@ -131,6 +134,7 @@ const DualSelector = ({
 
   return (
     <div>
+      <input type="text" onChange={searchValue}></input>
       <ul>
         {list?.map((option, idx) => {
           const { id, emoji, nameKo } = option;
