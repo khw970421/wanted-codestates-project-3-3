@@ -7,9 +7,6 @@ import { HiChevronDoubleRight } from "react-icons/hi";
 import Settings from "./components/Settings";
 
 const App = () => {
-  // titleName
-  const [availableName, setAvailableName] = useState("available options");
-  const [selectedName, setSelectedName] = useState("selected options");
   // available에서 검색 및 기본으로 사용하는 렌더링 값
   const [availableOptionsArr, setAvailableOptionsArr] = useState(
     emojiMenus.filter((val) => !val.visible)
@@ -18,10 +15,6 @@ const App = () => {
   const [selectedOptionsArr, setSelectedOptionsArr] = useState(
     emojiMenus.filter((val) => val.visible)
   );
-
-  // input에 따라 title 값 변경
-  const onChangeAvailable = ({ target }) => setAvailableName(target.value);
-  const onChangeSelected = ({ target }) => setSelectedName(target.value);
 
   // Settings
   const [titleChecked, settitleCheck] = useState(true);
@@ -39,7 +32,7 @@ const App = () => {
     <div id="App">
       <div className="center-box">
         <DualSelector
-          titleName={availableName}
+         title={titleInput[0]}
           optionsArr={availableOptionsArr}
         />
         <div>
@@ -53,7 +46,10 @@ const App = () => {
           {/* <input onChange={onChangeAvailable} value={availableName} />
           <input onChange={onChangeSelected} value={selectedName} /> */}
         </div>
-        <DualSelector titleName={selectedName} optionsArr={selectedOptionsArr} />
+        <DualSelector  
+          title={titleInput[1]} 
+          optionsArr={selectedOptionsArr} 
+        />
       </div>
       <Settings 
         titleInput={titleInput}
