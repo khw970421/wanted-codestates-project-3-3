@@ -11,7 +11,7 @@ const SettingsItem = ({ title, item, setItems, id }) => {
       <p>{title}</p>
       <div className="switch-box">
         <input
-          onClick={clickCheckbox}
+          onChange={clickCheckbox}
           ref={check}
           type="checkbox"
           id={id}
