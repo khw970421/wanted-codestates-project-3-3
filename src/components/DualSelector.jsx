@@ -153,22 +153,12 @@ const DualSelector = ({
                 onDragEnd={onDragEnd}
                 draggable
               >
-                {/* <button
-                  className={
-                    selectedArr.includes(idx)
-                      ? 'stop-dragging gray'
-                      : 'stop-dragging green'
-                  }
-                  onClick={(e) => onClickHandler(e, idx)}
-                >
-                  {emoji}&nbsp;{nameKo}
-                </button> */}
                 {emoji}&nbsp;{nameKo}
               </li>
             );
           })}
         </ul>
-        <div className={selectedCheck ? "selected-count" : "selected-count-hidden"}>
+        <div className={selectedCheck ? "selected-count" : "selected-count hidden"}>
           <p>{selectedArr.length} / {list.length}</p>
         </div>
       </div>

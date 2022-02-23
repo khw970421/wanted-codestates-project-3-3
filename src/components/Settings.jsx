@@ -30,7 +30,7 @@ const Settings = (props) => {
         {
           showSetting
           ?<div>
-                <SettingsItem title={'타이틀'} setItems={settitleCheck} />
+              <SettingsItem title={'타이틀'} setItems={settitleCheck} />
               {
                 titleChecked
                 ?<InputText textInput={titleInput} setTextInput={setTitleInput} />

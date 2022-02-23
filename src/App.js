@@ -41,7 +41,7 @@ const App = () => {
           searchChecked={searchChecked}
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
-          selectedCheck={setSelectedItemsChecked}
+          selectedCheck={selectedItemsChecked}
         />
         <div>
           <button>
@@ -49,10 +49,7 @@ const App = () => {
           </button>
           <button>
             <HiChevronDoubleLeft color="#333" size="18" />
-          </button>
-          {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
-          {/* <input onChange={onChangeAvailable} value={availableName} />
-          <input onChange={onChangeSelected} value={selectedName} /> */}
+          </button>          
         </div>
         <DualSelector
           title={titleInput[1]}
@@ -60,7 +57,7 @@ const App = () => {
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
           searchChecked={searchChecked}
-          selectedCheck={setSelectedItemsChecked}
+          selectedCheck={selectedItemsChecked}
         />
       </div>
       <Settings

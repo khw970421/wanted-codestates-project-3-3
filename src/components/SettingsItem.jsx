@@ -16,7 +16,9 @@ const SettingsItem = ({ title, setItems }) => {
           type="checkbox"
           id="switch"
         />
-        <label htmlFor="switch"></label>
+        <label htmlFor="switch">
+          <div></div>
+        </label>
       </div>
     </div>
   );
