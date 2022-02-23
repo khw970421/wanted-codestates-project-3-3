@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import '../scss/DualSelector.scss';
+import '../scss/dualSelector.scss';
 
 const DualSelector = ({ titleName, optionsArr }) => {
   // options는 props
