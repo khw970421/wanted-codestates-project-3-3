@@ -2,10 +2,7 @@ import DualSelector from './components/DualSelector';
 import { useState, useRef } from 'react';
 import emojiMenus from './components/data';
 import './scss/App.scss';
-import { HiChevronDoubleLeft } from 'react-icons/hi';
-import { HiChevronDoubleRight } from 'react-icons/hi';
 import Settings from './components/Settings';
-
 import MoveBtn from './components/MoveBtn';
 
 const App = () => {
@@ -49,6 +46,8 @@ const App = () => {
     draggingItemIndex.current = index;
     e.target.classList.add('grabbing');
     setDraggingSectionId(id);
+    setClickedAvailableArr([]);
+    setClickedselectedArr([]);
   };
 
   const onAvailableItemDragEnter = (e, index) => {

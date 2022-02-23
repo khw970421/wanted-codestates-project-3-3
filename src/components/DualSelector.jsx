@@ -139,7 +139,7 @@ const DualSelector = ({
                 onClick={(e) => onClickHandler(e, idx)}
                 onDragStart={(e) => onDragStart(e, idx, id)}
                 onDragEnter={(e) => onDragEnter(e, idx)}
-                onDragOver={(e) => e.preventDefault()}
+                onDragOver={onDragOver}
                 onDragEnd={onDragEnd}
                 draggable
               >
