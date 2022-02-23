@@ -5,7 +5,9 @@ import "./scss/App.scss";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
 import Settings from "./components/Settings";
+
 import MoveBtn from "./components/MoveBtn";
+
 
 const App = () => {
   // available에서 검색 및 기본으로 사용하는 렌더링 값
@@ -30,8 +32,10 @@ const App = () => {
   const [searchChecked, setSearchChecked] = useState(false);
   const [unitMoveChecked, setUnitMoveChecked] = useState(false);
   const [selectedItemsChecked, setSelectedItemsChecked] = useState(false);
-  const [itemSizeRadio, setItemSizeRadio] = useState("S");
-  const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
+
+  const [itemSizeRadio, setItemSizeRadio] = useState("XS");
+  const [screenSizeInput, setScreenSizeInput] = useState([200, 300]);
+
 
   return (
     <div id="App">
@@ -42,9 +46,11 @@ const App = () => {
           searchChecked={searchChecked}
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
-          selectedCheck={setSelectedItemsChecked}
+          selectedCheck={selectedItemsChecked}
+          screenSizeInput={screenSizeInput}
           itemSizeRadio={itemSizeRadio}
         />
+
         <MoveBtn
           availableOptionsArr={availableOptionsArr}
           selectedOptionsArr={selectedOptionsArr}
@@ -56,13 +62,15 @@ const App = () => {
           setClickedselectedArr={setClickedselectedArr}
         />
 
+
         <DualSelector
           title={titleInput[1]}
           optionsArr={selectedOptionsArr}
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
           searchChecked={searchChecked}
-          selectedCheck={setSelectedItemsChecked}
+          selectedCheck={selectedItemsChecked}
+          screenSizeInput={screenSizeInput}
           itemSizeRadio={itemSizeRadio}
         />
       </div>

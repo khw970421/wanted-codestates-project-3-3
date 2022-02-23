@@ -8,6 +8,7 @@ const DualSelector = ({
   setSelectedArr,
   searchChecked,
   selectedCheck,
+  screenSizeInput,
   itemSizeRadio,
 }) => {
   // options는 props
@@ -17,6 +18,7 @@ const DualSelector = ({
   const dragItem = useRef();
   // 드래깅 되어 지나가는 아이템들의 인덱스를 useRef 객체의 current에 저장한다.
   const dragOverItem = useRef();
+  const wrapperRef = useRef(null);
 
   // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
   const searchValue = ({ target }) => {
@@ -29,13 +31,22 @@ const DualSelector = ({
     setList(optionsArr);
   }, [optionsArr]);
 
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", onBlurHandler);
-  //   return () => {
-  //     document.removeEventListener("mousedown", onBlurHandler);
-  //   };
-  // }, []);
-  // 클릭 이벤트 ----------------------------------------------------------------------
+
+  useEffect(() => {
+    document.addEventListener("mousedown", onBlurHandler);
+    return () => {
+      document.removeEventListener("mousedown", onBlurHandler);
+    };
+  }, []);
+  
+
+  useEffect(() => {
+    console.log(screenSizeInput);
+    wrapperRef.current.style.width = `${screenSizeInput[0]}px`;
+    wrapperRef.current.style.height = `${screenSizeInput[1]}px`;
+  }, [screenSizeInput])
+
+
   const ctrlClick = (idx) => {
     // 이미 클릭 되어있는 item을 클릭할 때
     if (selectedArr.includes(idx)) {
@@ -133,7 +144,7 @@ const DualSelector = ({
   };
 
   return (
-    <div className="dual-selector-wrap">
+    <div ref={wrapperRef} className="dual-selector-wrap">
       <input
         type="text"
         onChange={searchValue}
@@ -168,7 +179,9 @@ const DualSelector = ({
           })}
         </ul>
         <div
+
           className={selectedCheck ? "selected-count" : "selected-count-hidden"}
+
         >
           <p>
             {selectedArr.length} / {list.length}
