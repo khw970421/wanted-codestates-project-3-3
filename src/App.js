@@ -95,11 +95,9 @@ const App = () => {
   };
 
   const onChangeAvailableSearch = (res) => {
-    console.log(res);
     setAvailableOptionsArr(res);
   };
   const onChangeSelectedSearch = (res) => {
-    console.log(res);
     setSelectedOptionsArr(res);
   };
   return (
