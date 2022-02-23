@@ -1,15 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 
-const ChaingeSize = ({textInput, setTextInput}) => {
+const ChaingeSize = ({ textInput, setTextInput }) => {
   const value1 = useRef()
   const value2 = useRef()
 
-  useEffect(()=>{
-    if(textInput) {
+  useEffect(() => {
+    if (textInput) {
       value1.current.value = textInput[0]
       value2.current.value = textInput[1]
     }
-  },[textInput])
+  }, [textInput])
 
   const focusOut = () => {
     const arr1 = value1.current.value
