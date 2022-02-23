@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import "../scss/dualSelector.scss";
+import React, { useState, useEffect, useRef } from 'react';
+import '../scss/dualSelector.scss';
 
 const DualSelector = ({
   title,
@@ -16,9 +16,8 @@ const DualSelector = ({
   onDragStart,
   onDragOver,
   id,
-  onChangeSearch
+  onChangeSearch,
 }) => {
-  // options는 props
   //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
   //드래깅 되는 아이템의 인덱스를 useRef객체의 current에 저장한다.
   // 드래깅 되어 지나가는 아이템들의 인덱스를 useRef 객체의 current에 저장한다.
@@ -26,18 +25,17 @@ const DualSelector = ({
 
   // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
   const searchValue = ({ target }) => {
-    
     const res = saveArr.filter(({ name }) => {
       return name.includes(target.value);
     });
-    console.log(res)
-    onChangeSearch(res)
+    console.log(res);
+    onChangeSearch(res);
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", onBlurHandler);
+    document.addEventListener('mousedown', onBlurHandler);
     return () => {
-      document.removeEventListener("mousedown", onBlurHandler);
+      document.removeEventListener('mousedown', onBlurHandler);
     };
   }, []);
 
@@ -109,9 +107,9 @@ const DualSelector = ({
 
   const onBlurHandler = (e) => {
     if (
-      e.target.tagName !== "SPAN" &&
-      e.target.tagName !== "LI" &&
-      e.target.tagName !== "BUTTON"
+      e.target.tagName !== 'SPAN' &&
+      e.target.tagName !== 'LI' &&
+      e.target.tagName !== 'BUTTON'
     ) {
       setSelectedArr([]);
     }
@@ -135,13 +133,13 @@ const DualSelector = ({
                 key={idx}
                 className={
                   selectedArr.includes(idx)
-                    ? "stop-dragging gray"
-                    : "stop-dragging white"
+                    ? 'stop-dragging gray'
+                    : 'stop-dragging white'
                 }
                 onClick={(e) => onClickHandler(e, idx)}
                 onDragStart={(e) => onDragStart(e, idx, id)}
                 onDragEnter={(e) => onDragEnter(e, idx)}
-                onDragOver={(e) => e.preventDefault()}
+                onDragOver={onDragOver}
                 onDragEnd={onDragEnd}
                 draggable
               >
