@@ -1,0 +1,12 @@
+@import "App.scss";
+
+.dual-selector-wrap {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.search-input {
+  @include input-default
+}

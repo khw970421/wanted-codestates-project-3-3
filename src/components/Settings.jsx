@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SettingsItem from "./SettingsItem";
+import './scss/Settings.scss';
 
 const items = [
   {

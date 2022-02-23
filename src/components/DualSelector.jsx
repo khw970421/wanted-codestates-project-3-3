@@ -1,4 +1,5 @@
 import { useState } from "react";
+import '../scss/dualSelector.scss';
 
 const DualSelector = ({
   titleName,
@@ -22,12 +23,19 @@ const DualSelector = ({
     console.log(e.target);
   };
   return (
-    <div>
-      <input type="text" onChange={searchValue}></input>
-      <header>{titleName}</header>
+    <div className="dual-selector-wrap">
+      <input
+        type="text"
+        onChange={searchValue}
+        className="search-input"
+        placeholder="search"
+      />
+      <h3>{titleName}</h3>
       <ul>
         {optionsArr.map((val, idx) => (
-          <li key={idx} onClick={selectTarget}>{`${val.emoji} ${val.name}`}</li>
+          <li key={idx} onClick={selectTarget}>
+            {`${val.emoji} ${val.name}`}
+          </li>
         ))}
       </ul>
       <div>
