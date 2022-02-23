@@ -4,6 +4,7 @@ import emojiMenus from "./components/data";
 import './scss/App.scss';
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
+import Settings from "./components/Settings";
 
 const App = () => {
   // titleName
@@ -51,35 +52,38 @@ const App = () => {
   };
   return (
     <div id="App">
-      <DualSelector
-        titleName={availableName}
-        optionsArr={availableOptionsArr}
-        saveOptionsArr={availableSaveOptionsArr}
-        changeOptionsArr={(res) => {
-          setAvailableOptionsArr(res);
-        }}        
-      />
-      {/* 버튼 태그에서 전체 옮기기 버튼 예시 */}
-      {/* 버튼 컴포넌트가 들어갈 자리 */}
-      <div>
-        <button onClick={moveAllSelected}>
-          <HiChevronDoubleRight color="#333"/>
-        </button>
-        <button onClick={moveAllAvailable}>
-          <HiChevronDoubleLeft color="#333"/>
-        </button>
-        {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
-        {/* <input onChange={onChangeAvailable} value={availableName} />
-        <input onChange={onChangeSelected} value={selectedName} /> */}
+      <div className="center-box">
+        <DualSelector
+          titleName={availableName}
+          optionsArr={availableOptionsArr}
+          saveOptionsArr={availableSaveOptionsArr}
+          changeOptionsArr={(res) => {
+            setAvailableOptionsArr(res);
+          }}        
+        />
+        {/* 버튼 태그에서 전체 옮기기 버튼 예시 */}
+        {/* 버튼 컴포넌트가 들어갈 자리 */}
+        <div>
+          <button onClick={moveAllSelected}>
+            <HiChevronDoubleRight color="#333" size="18" />
+          </button>
+          <button onClick={moveAllAvailable}>
+            <HiChevronDoubleLeft color="#333"size="18" />
+          </button>
+          {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
+          {/* <input onChange={onChangeAvailable} value={availableName} />
+          <input onChange={onChangeSelected} value={selectedName} /> */}
+        </div>
+        <DualSelector
+          titleName={selectedName}
+          optionsArr={selectedOptionsArr}
+          saveOptionsArr={selectedSaveOptionsArr}
+          changeOptionsArr={(res) => {
+            setSelectedOptionsArr(res);
+          }}
+        />
       </div>
-      <DualSelector
-        titleName={selectedName}
-        optionsArr={selectedOptionsArr}
-        saveOptionsArr={selectedSaveOptionsArr}
-        changeOptionsArr={(res) => {
-          setSelectedOptionsArr(res);
-        }}
-      />
+      <Settings />
     </div>
   );
 };

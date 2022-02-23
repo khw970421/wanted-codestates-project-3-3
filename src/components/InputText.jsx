@@ -18,13 +18,13 @@ const InputText = ({textInput, setTextInput}) => {
   }
 
   return (
-    <div>
+    <div className="setting-title-item">
       <div>
-        <input onBlur={focusOut} ref={value1} type="text" />
+        <input className="size-input" onBlur={focusOut} ref={value1} type="text" />
         <label htmlFor=""></label>
       </div>
       <div>
-        <input onBlur={focusOut} ref={value2} type="text" />
+        <input className="size-input" onBlur={focusOut} ref={value2} type="text" />
         <label htmlFor=""></label>
       </div>
     </div>
