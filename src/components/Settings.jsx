@@ -6,22 +6,21 @@ import InputRadio from './InputRadio'
 import '../scss/Settings.scss';
 import { HiCog } from "react-icons/hi";
 
-const Settings = () => {
-  const [titleChecked, settitleCheck] = useState(true);
-  const [titleInput, setTitleInput] = useState([
-    "available options",
-    "selected options",
-  ]);
-  const [searchChecked, setSearchChecked] = useState(false);
-  const [unitMoveChecked, setUnitMoveChecked] = useState(false);
-  const [selectedItemsChecked, setSelectedItemsChecked] = useState(false);
-  const [itemSizeRadio, setItemSizeRadio] = useState("S");
-  const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
+const Settings = (props) => {
+  const {
+    titleInput,
+    setTitleInput,
+    setSearchChecked,
+    setUnitMoveChecked,
+    setSelectedItemsChecked,
+    itemSizeRadio,
+    setItemSizeRadio,
+    screenSizeInput,
+    setScreenSizeInput
+  } = props
 
-
-  console.log(titleChecked, titleInput, searchChecked, unitMoveChecked, selectedItemsChecked, itemSizeRadio, screenSizeInput);
-
-  const [showSetting, setShowSetting] = useState(false)
+  const [titleChecked, settitleCheck] = useState(false);
+  const [showSetting, setShowSetting] = useState(false);
   return (
     <div className="settings-wrap">
       <button onClick={()=>{setShowSetting(!showSetting)}} className="settings-btn">
@@ -31,8 +30,12 @@ const Settings = () => {
         {
           showSetting
           ?<div>
-              <SettingsItem title={'타이틀'} setItems={settitleCheck} />
-              <InputText textInput={titleInput} setTextInput={setTitleInput} />
+                <SettingsItem title={'타이틀'} setItems={settitleCheck} />
+              {
+                titleChecked
+                ?<InputText textInput={titleInput} setTextInput={setTitleInput} />
+                :null
+              }
               <SettingsItem title={'검색'} setItems={setSearchChecked} />
               <SettingsItem title={'하나씩만 옮기기'} setItems={setUnitMoveChecked} />
               <SettingsItem title={'선택된 아이템 갯수 표시'} setItems={setSelectedItemsChecked} />
