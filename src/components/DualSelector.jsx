@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../scss/dualSelector.scss';
 
 const DualSelector = ({
-  titleName,
+  title,
   optionsArr,
   selectedArr,
   setSelectedArr,
@@ -124,7 +124,7 @@ const DualSelector = ({
   return (
     <div className="dual-selector-wrap">
       <input type="text" onChange={searchValue}></input>
-      <header>{titleName}</header>
+      <header>{title}</header>
       <ul>
         {list?.map((option, idx) => {
           const { id, emoji, nameKo } = option;
