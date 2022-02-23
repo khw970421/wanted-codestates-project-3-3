@@ -76,6 +76,7 @@ function MoveBtn({
   // available options로 지정이동
   const Available = () => {
     const arr = [];
+
     for (let index of clickedselectedArr) {
       arr.push(selectedOptionsArr[index]);
     }

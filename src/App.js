@@ -106,6 +106,7 @@ const App = () => {
         <DualSelector
           title={titleInput[0]}
           optionsArr={availableOptionsArr}
+          unitMoveChecked={unitMoveChecked}
           searchChecked={searchChecked}
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
@@ -139,6 +140,7 @@ const App = () => {
         <DualSelector
           title={titleInput[1]}
           optionsArr={selectedOptionsArr}
+          unitMoveChecked={unitMoveChecked}
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
           saveArr={selectedSaveOptionsArr}
