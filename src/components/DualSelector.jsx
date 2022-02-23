@@ -7,6 +7,7 @@ const DualSelector = ({
   selectedArr,
   setSelectedArr,
   searchChecked
+
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr);

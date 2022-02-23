@@ -6,6 +6,7 @@ import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
 import Settings from "./components/Settings";
 
+
 const App = () => {
   // available에서 검색 및 기본으로 사용하는 렌더링 값
   const [availableOptionsArr, setAvailableOptionsArr] = useState(
@@ -22,13 +23,13 @@ const App = () => {
   // Settings
   const [titleChecked, settitleCheck] = useState(true);
   const [titleInput, setTitleInput] = useState([
-    "available options",
-    "selected options",
+    'available options',
+    'selected options',
   ]);
   const [searchChecked, setSearchChecked] = useState(false);
   const [unitMoveChecked, setUnitMoveChecked] = useState(false);
   const [selectedItemsChecked, setSelectedItemsChecked] = useState(false);
-  const [itemSizeRadio, setItemSizeRadio] = useState("S");
+  const [itemSizeRadio, setItemSizeRadio] = useState('S');
   const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
 
   return (
@@ -46,7 +47,7 @@ const App = () => {
             <HiChevronDoubleRight color='#333' size='18' />
           </button>
           <button>
-            <HiChevronDoubleLeft color='#333' size='18' />
+            <HiChevronDoubleLeft color="#333" size="18" />
           </button>
           {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
           {/* <input onChange={onChangeAvailable} value={availableName} />
@@ -58,6 +59,7 @@ const App = () => {
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
           searchChecked={searchChecked}
+
         />
       </div>
       <Settings
