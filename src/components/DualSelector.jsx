@@ -4,6 +4,7 @@ import "../scss/dualSelector.scss";
 const DualSelector = ({
   title,
   optionsArr,
+  unitMoveChecked,
   selectedArr,
   setSelectedArr,
   saveArr,
@@ -44,6 +45,8 @@ const DualSelector = ({
   }, [screenSizeInput]);
 
   const ctrlClick = (idx) => {
+    //setting 하나씩만옮기기
+    if (!unitMoveChecked) return;
     // 이미 클릭 되어있는 item을 클릭할 때
     if (selectedArr.includes(idx)) {
       const selected = selectedArr.filter((item) => idx !== item);
@@ -57,6 +60,9 @@ const DualSelector = ({
   };
 
   const shiftClick = (idx) => {
+    //setting 하나씩만옮기기
+    if (!unitMoveChecked) return;
+
     const selected = [];
     const len = selectedArr.length;
     // 클릭된게 없으면 0번 부터 있으면 가장 처음 클릭 된 것
