@@ -1,9 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from 'react';
 import '../scss/dualSelector.scss';
 
-const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
+const DualSelector = ({
+  title,
+  optionsArr,
+  selectedArr,
+  setSelectedArr,
+  searchChecked,
+  selectedCheck,
+}) => {
   // options는 props
-  const [selectedOptions, setSelectedOptions] = useState([]);
   const [list, setList] = useState(optionsArr);
   //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
   //드래깅 되는 아이템의 인덱스를 useRef객체의 current에 저장한다.
@@ -20,33 +26,31 @@ const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", onBlurHandler);
+    document.addEventListener('mousedown', onBlurHandler);
     return () => {
-      document.removeEventListener("mousedown", onBlurHandler);
+      document.removeEventListener('mousedown', onBlurHandler);
     };
   }, []);
 
   const ctrlClick = (idx) => {
     // 이미 클릭 되어있는 item을 클릭할 때
-    if (selectedOptions.includes(idx)) {
-      const selected = selectedOptions.filter((item) => idx !== item);
-
-      setSelectedOptions(selected);
+    if (selectedArr.includes(idx)) {
+      const selected = selectedArr.filter((item) => idx !== item);
+      setSelectedArr(selected);
     }
     // 클릭 되어있지 않은 item을 클릭할 때
     else {
-      const selected = [...selectedOptions, idx];
-
-      setSelectedOptions(selected);
+      const selected = [...selectedArr, idx];
+      setSelectedArr(selected);
     }
   };
 
   const shiftClick = (idx) => {
-    const len = selectedOptions.length;
-    // 클릭된게 없으면 0번 부터 있으면 가장 처음 클릭 된 것
-    const start = len === 0 ? 0 : selectedOptions[0];
-    const end = idx;
     const selected = [];
+    const len = selectedArr.length;
+    // 클릭된게 없으면 0번 부터 있으면 가장 처음 클릭 된 것
+    const start = len === 0 ? 0 : selectedArr[0];
+    const end = idx;
 
     // 수정의 여지가 있음
     // start가 작을 땐 오름차순, 클 때는 내림차순
@@ -60,11 +64,16 @@ const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
       }
     }
 
-    setSelectedOptions(selected);
+    setSelectedArr(selected);
   };
 
   const normalClick = (idx) => {
-    setSelectedOptions([idx]);
+    if (selectedArr.includes(idx)) {
+      const selected = selectedArr.filter((item) => item !== idx);
+      setSelectedArr(selected);
+    } else {
+      setSelectedArr([idx]);
+    }
   };
 
   const onClickHandler = (e, idx) => {
@@ -83,15 +92,17 @@ const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
   };
 
   const onBlurHandler = (e) => {
-    if (e.target.classList[0] !== "stop-dragging") {
-      setSelectedOptions([]);
+    if (e.target.classList[0] !== 'stop-dragging') {
+      setSelectedArr([]);
     }
   };
 
   const onDragStart = (e, position) => {
     dragItem.current = position;
-    e.target.classList.add("grabbing");
+    e.target.classList.add('grabbing');
+    setSelectedArr([]);
   };
+
   const onDragEnter = (e, position) => {
     dragOverItem.current = position;
     const copyListItems = [...list];
@@ -109,7 +120,7 @@ const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
   };
 
   const onDragEnd = (e) => {
-    e.target.classList.remove("grabbing");
+    e.target.classList.remove('grabbing');
   };
 
   return (
@@ -117,34 +128,41 @@ const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
       <input
         type="text"
         onChange={searchValue}
-        className="search-input"
+        disabled={searchChecked ? true : false}
         placeholder="search"
-      />              
+      />
       <div className="selector-content">
-        <header>{titleName}</header>
-        <ul className="select-list">
+        <header>{title}</header>
+        <ul>
           {list?.map((option, idx) => {
             const { id, emoji, nameKo } = option;
 
             return (
               <li
                 key={id}
+                className={
+                  selectedArr.includes(idx)
+                    ? 'stop-dragging gray'
+                    : 'stop-dragging white'
+                }
+                onClick={(e) => onClickHandler(e, idx)}
                 onDragStart={(e) => onDragStart(e, idx)}
                 onDragEnter={(e) => onDragEnter(e, idx)}
                 onDragOver={(e) => e.preventDefault()}
                 onDragEnd={onDragEnd}
                 draggable
               >
-                <div
+                {/* <button
                   className={
-                    selectedOptions.includes(idx)
-                      ? "stop-dragging gray"
-                      : "stop-dragging white"
+                    selectedArr.includes(idx)
+                      ? 'stop-dragging gray'
+                      : 'stop-dragging green'
                   }
                   onClick={(e) => onClickHandler(e, idx)}
                 >
                   {emoji}&nbsp;{nameKo}
-                </div>
+                </button> */}
+                {emoji}&nbsp;{nameKo}
               </li>
             );
           })}
@@ -152,7 +170,7 @@ const DualSelector = ({ titleName, optionsArr, selectedCheck }) => {
         <div className={selectedCheck ? "selected-count" : "selected-count-hidden"}>
           <p>{selectedOptions.length} / {list.length}</p>
         </div>
-      </div>      
+      </div>
     </div>
   );
 };
