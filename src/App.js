@@ -32,6 +32,7 @@ const App = () => {
   const [itemSizeRadio, setItemSizeRadio] = useState('S');
   const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
 
+
   return (
     <div id='App'>
       <div className='center-box'>
@@ -42,6 +43,7 @@ const App = () => {
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
           selectedCheck={setSelectedItemsChecked}
+          itemSizeRadio={itemSizeRadio}
         />
         <div>
           <button>
@@ -61,6 +63,7 @@ const App = () => {
           setSelectedArr={setClickedselectedArr}
           searchChecked={searchChecked}
           selectedCheck={setSelectedItemsChecked}
+          itemSizeRadio={itemSizeRadio}
         />
       </div>
       <Settings

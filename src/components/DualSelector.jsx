@@ -8,6 +8,7 @@ const DualSelector = ({
   setSelectedArr,
   searchChecked,
   selectedCheck,
+  itemSizeRadio,
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr);
@@ -92,7 +93,8 @@ const DualSelector = ({
   };
 
   const onBlurHandler = (e) => {
-    if (e.target.classList[0] !== 'stop-dragging') {
+    if (e.target.tagName !== 'SPAN' && e.target.tagName !== 'LI') {
+      console.log('blur');
       setSelectedArr([]);
     }
   };
@@ -153,7 +155,9 @@ const DualSelector = ({
                 onDragEnd={onDragEnd}
                 draggable
               >
-                {emoji}&nbsp;{nameKo}
+                <span className={itemSizeRadio}>
+                  {emoji}&nbsp;{nameKo}
+                </span>
               </li>
             );
           })}
