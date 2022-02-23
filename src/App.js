@@ -1,12 +1,9 @@
-import DualSelector from "./components/DualSelector";
-import { useState, useRef } from "react";
-import emojiMenus from "./components/data";
-import "./scss/App.scss";
-import { HiChevronDoubleLeft } from "react-icons/hi";
-import { HiChevronDoubleRight } from "react-icons/hi";
-import Settings from "./components/Settings";
-
-import MoveBtn from "./components/MoveBtn";
+import DualSelector from './components/DualSelector';
+import { useState, useRef } from 'react';
+import emojiMenus from './components/data';
+import './scss/App.scss';
+import Settings from './components/Settings';
+import MoveBtn from './components/MoveBtn';
 
 const App = () => {
   // available에서 검색 및 기본으로 사용하는 렌더링 값
@@ -31,14 +28,14 @@ const App = () => {
   // Settings
   const [titleChecked, settitleCheck] = useState(true);
   const [titleInput, setTitleInput] = useState([
-    "available options",
-    "selected options",
+    'available options',
+    'selected options',
   ]);
   const [searchChecked, setSearchChecked] = useState(false);
   const [unitMoveChecked, setUnitMoveChecked] = useState(false);
   const [selectedItemsChecked, setSelectedItemsChecked] = useState(false);
 
-  const [itemSizeRadio, setItemSizeRadio] = useState("XS");
+  const [itemSizeRadio, setItemSizeRadio] = useState('XS');
   const [screenSizeInput, setScreenSizeInput] = useState([200, 300]);
   const [draggingSectionId, setDraggingSectionId] = useState(null);
 
@@ -47,12 +44,14 @@ const App = () => {
 
   const onDragStart = (e, index, id) => {
     draggingItemIndex.current = index;
-    e.target.classList.add("grabbing");
+    e.target.classList.add('grabbing');
     setDraggingSectionId(id);
+    setClickedAvailableArr([]);
+    setClickedselectedArr([]);
   };
 
   const onAvailableItemDragEnter = (e, index) => {
-    if (draggingSectionId === "availableSelector") {
+    if (draggingSectionId === 'availableSelector') {
       draggingOverItemIndex.current = index;
       const copyListItems = [...availableOptionsArr];
       const dragItemContent = copyListItems[draggingItemIndex.current];
@@ -70,7 +69,7 @@ const App = () => {
   };
 
   const onSelectedItemDragEnter = (e, index) => {
-    if (draggingSectionId === "selectedItemSelector") {
+    if (draggingSectionId === 'selectedItemSelector') {
       draggingOverItemIndex.current = index;
       const copyListItems = [...selectedOptionsArr];
       const dragItemContent = copyListItems[draggingItemIndex.current];
@@ -88,7 +87,7 @@ const App = () => {
   };
 
   const onDragEnd = (e) => {
-    e.target.classList.remove("grabbing");
+    e.target.classList.remove('grabbing');
     setDraggingSectionId(null);
   };
 
@@ -97,12 +96,12 @@ const App = () => {
   };
 
   const onChangeAvailableSearch = (res) => {
-    console.log(res)
-    setAvailableOptionsArr(res)
+    console.log(res);
+    setAvailableOptionsArr(res);
   };
   const onChangeSelectedSearch = (res) => {
-    console.log(res)
-    setSelectedOptionsArr(res)
+    console.log(res);
+    setSelectedOptionsArr(res);
   };
   return (
     <div id="App">
