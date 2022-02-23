@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../scss/dualSelector.scss';
+import React, { useState, useEffect, useRef } from "react";
+import "../scss/dualSelector.scss";
 
 const DualSelector = ({
   titleName,
@@ -14,7 +14,6 @@ const DualSelector = ({
   const dragItem = useRef();
   // 드래깅 되어 지나가는 아이템들의 인덱스를 useRef 객체의 current에 저장한다.
   const dragOverItem = useRef();
-
   // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
   const searchValue = ({ target }) => {
     const res = optionsArr.filter(({ name }) => {
@@ -24,9 +23,9 @@ const DualSelector = ({
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', onBlurHandler);
+    document.addEventListener("mousedown", onBlurHandler);
     return () => {
-      document.removeEventListener('mousedown', onBlurHandler);
+      document.removeEventListener("mousedown", onBlurHandler);
     };
   }, []);
 
@@ -90,14 +89,14 @@ const DualSelector = ({
   };
 
   const onBlurHandler = (e) => {
-    if (e.target.classList[0] !== 'stop-dragging') {
+    if (e.target.classList[0] !== "stop-dragging") {
       setSelectedArr([]);
     }
   };
 
   const onDragStart = (e, position) => {
     dragItem.current = position;
-    e.target.classList.add('grabbing');
+    e.target.classList.add("grabbing");
     setSelectedArr([]);
   };
 
@@ -118,7 +117,7 @@ const DualSelector = ({
   };
 
   const onDragEnd = (e) => {
-    e.target.classList.remove('grabbing');
+    e.target.classList.remove("grabbing");
   };
 
   return (
@@ -128,14 +127,13 @@ const DualSelector = ({
       <ul>
         {list?.map((option, idx) => {
           const { id, emoji, nameKo } = option;
-
           return (
             <li
               key={id}
               className={
                 selectedArr.includes(idx)
-                  ? 'stop-dragging gray'
-                  : 'stop-dragging green'
+                  ? "stop-dragging gray"
+                  : "stop-dragging green"
               }
               onClick={(e) => onClickHandler(e, idx)}
               onDragStart={(e) => onDragStart(e, idx)}
@@ -162,5 +160,4 @@ const DualSelector = ({
     </div>
   );
 };
-
 export default DualSelector;
