@@ -23,6 +23,18 @@ const App = () => {
   const onChangeAvailable = ({ target }) => setAvailableName(target.value);
   const onChangeSelected = ({ target }) => setSelectedName(target.value);
 
+  // Settings
+  const [titleChecked, settitleCheck] = useState(true);
+  const [titleInput, setTitleInput] = useState([
+    "available options",
+    "selected options",
+  ]);
+  const [searchChecked, setSearchChecked] = useState(false);
+  const [unitMoveChecked, setUnitMoveChecked] = useState(false);
+  const [selectedItemsChecked, setSelectedItemsChecked] = useState(false);
+  const [itemSizeRadio, setItemSizeRadio] = useState("S");
+  const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
+
   return (
     <div id="App">
       <div className="center-box">
@@ -43,7 +55,17 @@ const App = () => {
         </div>
         <DualSelector titleName={selectedName} optionsArr={selectedOptionsArr} />
       </div>
-      <Settings />
+      <Settings 
+        titleInput={titleInput}
+        setTitleInput={setTitleInput}
+        setSearchChecked={setSearchChecked}
+        setUnitMoveChecked={setUnitMoveChecked}
+        setSelectedItemsChecked={setSelectedItemsChecked}
+        itemSizeRadio={itemSizeRadio}
+        setItemSizeRadio={setItemSizeRadio}
+        screenSizeInput={screenSizeInput}
+        setScreenSizeInput={setScreenSizeInput}
+      />
     </div>
   );
 };
