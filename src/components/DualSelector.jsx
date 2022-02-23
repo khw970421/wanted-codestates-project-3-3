@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../scss/dualSelector.scss';
 
 const DualSelector = ({
-  titleName,
+  title,
   optionsArr,
   selectedArr,
   setSelectedArr,
+  searchChecked,
+  selectedCheck,
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr);
@@ -123,32 +125,47 @@ const DualSelector = ({
 
   return (
     <div className="dual-selector-wrap">
-      <input type="text" onChange={searchValue}></input>
-      <header>{titleName}</header>
-      <ul>
-        {list?.map((option, idx) => {
-          const { emoji, nameKo } = option;
+      <input
+        type="text"
+        onChange={searchValue}
+        disabled={searchChecked ? true : false}
+        className="search-input"
+        placeholder="search"
+      />
+      <div className="selector-content">
+        <header>{title}</header>
+        <ul className="select-list">
+          {list?.map((option, idx) => {
+            const { emoji, nameKo } = option;
 
-          return (
-            <li
-              key={idx}
-              className={
-                selectedArr.includes(idx)
-                  ? 'stop-dragging gray'
-                  : 'stop-dragging green'
-              }
-              onClick={(e) => onClickHandler(e, idx)}
-              onDragStart={(e) => onDragStart(e, idx)}
-              onDragEnter={(e) => onDragEnter(e, idx)}
-              onDragOver={(e) => e.preventDefault()}
-              onDragEnd={onDragEnd}
-              draggable
-            >
-              {emoji}&nbsp;{nameKo}
-            </li>
-          );
-        })}
-      </ul>
+            return (
+              <li
+                key={idx}
+                className={
+                  selectedArr.includes(idx)
+                    ? 'stop-dragging gray'
+                    : 'stop-dragging white'
+                }
+                onClick={(e) => onClickHandler(e, idx)}
+                onDragStart={(e) => onDragStart(e, idx)}
+                onDragEnter={(e) => onDragEnter(e, idx)}
+                onDragOver={(e) => e.preventDefault()}
+                onDragEnd={onDragEnd}
+                draggable
+              >
+                {emoji}&nbsp;{nameKo}
+              </li>
+            );
+          })}
+        </ul>
+        <div
+          className={selectedCheck ? 'selected-count' : 'selected-count-hidden'}
+        >
+          <p>
+            {selectedArr.length} / {list.length}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
