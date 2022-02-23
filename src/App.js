@@ -6,6 +6,9 @@ import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
 import Settings from "./components/Settings";
 
+import MoveBtn from "./components/MoveBtn";
+
+
 const App = () => {
   // available에서 검색 및 기본으로 사용하는 렌더링 값
   const [availableOptionsArr, setAvailableOptionsArr] = useState(
@@ -16,6 +19,7 @@ const App = () => {
     emojiMenus.filter((val) => val.visible)
   );
 
+  // 왼쪽,오른쪽
   const [clickedAvailableArr, setClickedAvailableArr] = useState([]);
   const [clickedselectedArr, setClickedselectedArr] = useState([]);
 
@@ -28,13 +32,14 @@ const App = () => {
   const [searchChecked, setSearchChecked] = useState(false);
   const [unitMoveChecked, setUnitMoveChecked] = useState(false);
   const [selectedItemsChecked, setSelectedItemsChecked] = useState(false);
+
   const [itemSizeRadio, setItemSizeRadio] = useState("XS");
   const [screenSizeInput, setScreenSizeInput] = useState([200, 300]);
 
 
   return (
-    <div id='App'>
-      <div className='center-box'>
+    <div id="App">
+      <div className="center-box">
         <DualSelector
           title={titleInput[0]}
           optionsArr={availableOptionsArr}
@@ -45,14 +50,19 @@ const App = () => {
           screenSizeInput={screenSizeInput}
           itemSizeRadio={itemSizeRadio}
         />
-        <div>
-          <button>
-            <HiChevronDoubleRight color='#333' size='18' />
-          </button>
-          <button>
-            <HiChevronDoubleLeft color="#333" size="18" />
-          </button>          
-        </div>
+
+        <MoveBtn
+          availableOptionsArr={availableOptionsArr}
+          selectedOptionsArr={selectedOptionsArr}
+          setAvailableOptionsArr={setAvailableOptionsArr}
+          setSelectedOptionsArr={setSelectedOptionsArr}
+          clickedAvailableArr={clickedAvailableArr}
+          clickedselectedArr={clickedselectedArr}
+          setClickedAvailableArr={setClickedAvailableArr}
+          setClickedselectedArr={setClickedselectedArr}
+        />
+
+
         <DualSelector
           title={titleInput[1]}
           optionsArr={selectedOptionsArr}

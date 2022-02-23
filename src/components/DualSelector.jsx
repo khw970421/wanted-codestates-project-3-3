@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../scss/dualSelector.scss';
+import React, { useState, useEffect, useRef } from "react";
+import "../scss/dualSelector.scss";
 
 const DualSelector = ({
   title,
@@ -12,7 +12,7 @@ const DualSelector = ({
   itemSizeRadio,
 }) => {
   // options는 props
-  const [list, setList] = useState(optionsArr);
+  const [list, setList] = useState(optionsArr); // 아이템 목록
   //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
   //드래깅 되는 아이템의 인덱스를 useRef객체의 current에 저장한다.
   const dragItem = useRef();
@@ -27,19 +27,25 @@ const DualSelector = ({
     });
     setList(res);
   };
+  useEffect(() => {
+    setList(optionsArr);
+  }, [optionsArr]);
+
 
   useEffect(() => {
-    document.addEventListener('mousedown', onBlurHandler);
+    document.addEventListener("mousedown", onBlurHandler);
     return () => {
-      document.removeEventListener('mousedown', onBlurHandler);
+      document.removeEventListener("mousedown", onBlurHandler);
     };
   }, []);
+  
 
   useEffect(() => {
     console.log(screenSizeInput);
     wrapperRef.current.style.width = `${screenSizeInput[0]}px`;
     wrapperRef.current.style.height = `${screenSizeInput[1]}px`;
   }, [screenSizeInput])
+
 
   const ctrlClick = (idx) => {
     // 이미 클릭 되어있는 item을 클릭할 때
@@ -86,6 +92,7 @@ const DualSelector = ({
   };
 
   const onClickHandler = (e, idx) => {
+    console.log(selectedArr);
     // ctrl 또는 command를 누르고 클릭 했을 때
     if (e.ctrlKey || e.metaKey) {
       ctrlClick(idx);
@@ -102,9 +109,9 @@ const DualSelector = ({
 
   const onBlurHandler = (e) => {
     if (
-      e.target.tagName !== 'SPAN' &&
-      e.target.tagName !== 'LI' &&
-      e.target.tagName !== 'BUTTON'
+      e.target.tagName !== "SPAN" &&
+      e.target.tagName !== "LI" &&
+      e.target.tagName !== "BUTTON"
     ) {
       setSelectedArr([]);
     }
@@ -112,7 +119,7 @@ const DualSelector = ({
 
   const onDragStart = (e, position) => {
     dragItem.current = position;
-    e.target.classList.add('grabbing');
+    e.target.classList.add("grabbing");
     setSelectedArr([]);
   };
 
@@ -133,7 +140,7 @@ const DualSelector = ({
   };
 
   const onDragEnd = (e) => {
-    e.target.classList.remove('grabbing');
+    e.target.classList.remove("grabbing");
   };
 
   return (
@@ -154,8 +161,8 @@ const DualSelector = ({
                 key={idx}
                 className={
                   selectedArr.includes(idx)
-                    ? 'stop-dragging gray'
-                    : 'stop-dragging white'
+                    ? "stop-dragging gray"
+                    : "stop-dragging white"
                 }
                 onClick={(e) => onClickHandler(e, idx)}
                 onDragStart={(e) => onDragStart(e, idx)}
@@ -172,7 +179,9 @@ const DualSelector = ({
           })}
         </ul>
         <div
-          className={selectedCheck ? "selected-count" : "selected-count hidden"}
+
+          className={selectedCheck ? "selected-count" : "selected-count-hidden"}
+
         >
           <p>
             {selectedArr.length} / {list.length}
