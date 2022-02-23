@@ -1,7 +1,10 @@
 import DualSelector from "./components/DualSelector";
 import { useState } from "react";
 import emojiMenus from "./components/data";
-import "./App.css";
+import './scss/App.scss';
+import { HiChevronDoubleLeft } from "react-icons/hi";
+import { HiChevronDoubleRight } from "react-icons/hi";
+import Settings from "./components/Settings";
 
 const App = () => {
   // titleName
@@ -21,13 +24,27 @@ const App = () => {
   const onChangeSelected = ({ target }) => setSelectedName(target.value);
 
   return (
-    <>
-      <DualSelector
-        titleName={availableName}
-        optionsArr={availableOptionsArr}
-      />
-      <DualSelector titleName={selectedName} optionsArr={selectedOptionsArr} />
-    </>
+    <div id="App">
+      <div className="center-box">
+        <DualSelector
+          titleName={availableName}
+          optionsArr={availableOptionsArr}
+        />
+        <div>
+          <button>
+            <HiChevronDoubleRight color="#333" size="18" />
+          </button>
+          <button>
+            <HiChevronDoubleLeft color="#333"size="18" />
+          </button>
+          {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
+          {/* <input onChange={onChangeAvailable} value={availableName} />
+          <input onChange={onChangeSelected} value={selectedName} /> */}
+        </div>
+        <DualSelector titleName={selectedName} optionsArr={selectedOptionsArr} />
+      </div>
+      <Settings />
+    </div>
   );
 };
 

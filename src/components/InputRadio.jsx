@@ -9,7 +9,7 @@ const InputRadio = ({ title, itemSizeRadio, setItemSizeRadio }) => {
   }
 
   return (
-    <div>
+    <div className="setting-item">
       <p>{title}</p>
       {itemSize.map((size, index) => (
         <div key={index}>

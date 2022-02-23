@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import '../scss/DualSelector.scss';
 
 const DualSelector = ({ titleName, optionsArr }) => {
   // options는 props
@@ -112,7 +113,7 @@ const DualSelector = ({ titleName, optionsArr }) => {
   };
 
   return (
-    <div>
+    <div className="dual-selector-wrap">
       <input type="text" onChange={searchValue}></input>
       <header>{titleName}</header>
       <ul>

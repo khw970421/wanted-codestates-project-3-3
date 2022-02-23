@@ -18,15 +18,15 @@ const ChaingeSize = ({textInput, setTextInput}) => {
   }
 
   return (
-    <div>
+    <div className="setting-last-item">
       <div>
         <label htmlFor="">가로</label>
-        <input onBlur={focusOut} ref={value1} type="number" />
+        <input className="size-input" onBlur={focusOut} ref={value1} type="number" />
         <span>px</span>
       </div>
       <div>
         <label htmlFor="">세로</label>
-        <input onBlur={focusOut} ref={value2} type="number" />
+        <input className="size-input" onBlur={focusOut} ref={value2} type="number" />
         <span>px</span>
       </div>
     </div>
