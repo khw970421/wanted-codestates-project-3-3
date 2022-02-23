@@ -9,7 +9,7 @@ const DualSelector = ({
   searchChecked,
   selectedCheck,
   screenSizeInput,
-
+  itemSizeRadio,
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr);
@@ -101,7 +101,11 @@ const DualSelector = ({
   };
 
   const onBlurHandler = (e) => {
-    if (e.target.classList[0] !== 'stop-dragging') {
+    if (
+      e.target.tagName !== 'SPAN' &&
+      e.target.tagName !== 'LI' &&
+      e.target.tagName !== 'BUTTON'
+    ) {
       setSelectedArr([]);
     }
   };
@@ -144,12 +148,10 @@ const DualSelector = ({
       <div className="selector-content">
         <header>{title}</header>
         <ul className="select-list">
-          {list?.map((option, idx) => {
-            const { id, emoji, nameKo } = option;
-
+          {list.map((option, idx) => {
             return (
               <li
-                key={id}
+                key={idx}
                 className={
                   selectedArr.includes(idx)
                     ? 'stop-dragging gray'
@@ -162,23 +164,19 @@ const DualSelector = ({
                 onDragEnd={onDragEnd}
                 draggable
               >
-                {/* <button
-                  className={
-                    selectedArr.includes(idx)
-                      ? 'stop-dragging gray'
-                      : 'stop-dragging green'
-                  }
-                  onClick={(e) => onClickHandler(e, idx)}
-                >
-                  {emoji}&nbsp;{nameKo}
-                </button> */}
-                {emoji}&nbsp;{nameKo}
+                <span className={itemSizeRadio}>
+                  {option.emoji}&nbsp;{option.nameKo}
+                </span>
               </li>
             );
           })}
         </ul>
-        <div className={selectedCheck ? "selected-count" : "selected-count-hidden"}>
-          <p>{selectedArr.length} / {list.length}</p>
+        <div
+          className={selectedCheck ? 'selected-count' : 'selected-count-hidden'}
+        >
+          <p>
+            {selectedArr.length} / {list.length}
+          </p>
         </div>
       </div>
     </div>
