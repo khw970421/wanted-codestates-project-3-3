@@ -1,12 +1,12 @@
-import DualSelector from "./components/DualSelector";
-import { useState } from "react";
-import emojiMenus from "./components/data";
-import "./App.css";
+import DualSelector from './components/DualSelector';
+import { useState } from 'react';
+import emojiMenus from './components/data';
+import './App.css';
 
 const App = () => {
   // titleName
-  const [availableName, setAvailableName] = useState("available options");
-  const [selectedName, setSelectedName] = useState("selected options");
+  const [availableName, setAvailableName] = useState('available options');
+  const [selectedName, setSelectedName] = useState('selected options');
   // available에서 검색 및 기본으로 사용하는 렌더링 값
   const [availableOptionsArr, setAvailableOptionsArr] = useState(
     emojiMenus.filter((val) => !val.visible)
@@ -15,6 +15,9 @@ const App = () => {
   const [selectedOptionsArr, setSelectedOptionsArr] = useState(
     emojiMenus.filter((val) => val.visible)
   );
+
+  const [clickedAvailableArr, setClickedAvailableArr] = useState([]);
+  const [clickedselectedArr, setClickedselectedArr] = useState([]);
 
   // input에 따라 title 값 변경
   const onChangeAvailable = ({ target }) => setAvailableName(target.value);
@@ -25,8 +28,15 @@ const App = () => {
       <DualSelector
         titleName={availableName}
         optionsArr={availableOptionsArr}
+        selectedArr={clickedAvailableArr}
+        setSelectedArr={setClickedAvailableArr}
       />
-      <DualSelector titleName={selectedName} optionsArr={selectedOptionsArr} />
+      <DualSelector
+        titleName={selectedName}
+        optionsArr={selectedOptionsArr}
+        selectedArr={clickedselectedArr}
+        setSelectedArr={setClickedselectedArr}
+      />
     </>
   );
 };
