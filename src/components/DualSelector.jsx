@@ -6,6 +6,7 @@ const DualSelector = ({
   optionsArr,
   selectedArr,
   setSelectedArr,
+  saveArr,
   searchChecked,
   selectedCheck,
   screenSizeInput,
@@ -15,6 +16,7 @@ const DualSelector = ({
   onDragStart,
   onDragOver,
   id,
+  onChangeSearch,
 }) => {
   //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
   //드래깅 되는 아이템의 인덱스를 useRef객체의 current에 저장한다.
@@ -23,10 +25,11 @@ const DualSelector = ({
 
   // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
   const searchValue = ({ target }) => {
-    const res = optionsArr.filter(({ name }) => {
+    const res = saveArr.filter(({ name }) => {
       return name.includes(target.value);
     });
-    // setList(res);
+    console.log(res);
+    onChangeSearch(res);
   };
 
   useEffect(() => {

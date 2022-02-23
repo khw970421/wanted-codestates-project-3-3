@@ -13,8 +13,14 @@ const App = () => {
   const [availableOptionsArr, setAvailableOptionsArr] = useState(
     emojiMenus.filter((val) => !val.visible)
   );
+  const [availableSaveOptionsArr, setAvailableSaveOptionsArr] = useState(
+    emojiMenus.filter((val) => !val.visible)
+  );
   // selected에서 검색 및 기본으로 사용하는 렌더링 값
   const [selectedOptionsArr, setSelectedOptionsArr] = useState(
+    emojiMenus.filter((val) => val.visible)
+  );
+  const [selectedSaveOptionsArr, setSelectedSaveOptionsArr] = useState(
     emojiMenus.filter((val) => val.visible)
   );
 
@@ -90,6 +96,14 @@ const App = () => {
     e.preventDefault();
   };
 
+  const onChangeAvailableSearch = (res) => {
+    console.log(res);
+    setAvailableOptionsArr(res);
+  };
+  const onChangeSelectedSearch = (res) => {
+    console.log(res);
+    setSelectedOptionsArr(res);
+  };
   return (
     <div id="App">
       <div className="center-box">
@@ -99,6 +113,7 @@ const App = () => {
           searchChecked={searchChecked}
           selectedArr={clickedAvailableArr}
           setSelectedArr={setClickedAvailableArr}
+          saveArr={availableSaveOptionsArr}
           selectedCheck={selectedItemsChecked}
           screenSizeInput={screenSizeInput}
           itemSizeRadio={itemSizeRadio}
@@ -107,6 +122,7 @@ const App = () => {
           onDragOver={onDragOver}
           onDragEnd={onDragEnd}
           id="availableSelector"
+          onChangeSearch={onChangeAvailableSearch}
         />
 
         <MoveBtn
@@ -118,6 +134,10 @@ const App = () => {
           clickedselectedArr={clickedselectedArr}
           setClickedAvailableArr={setClickedAvailableArr}
           setClickedselectedArr={setClickedselectedArr}
+          availableSaveOptionsArr={availableSaveOptionsArr}
+          setAvailableSaveOptionsArr={setAvailableSaveOptionsArr}
+          selectedSaveOptionsArr={selectedSaveOptionsArr}
+          setSelectedSaveOptionsArr={setSelectedSaveOptionsArr}
         />
 
         <DualSelector
@@ -125,6 +145,7 @@ const App = () => {
           optionsArr={selectedOptionsArr}
           selectedArr={clickedselectedArr}
           setSelectedArr={setClickedselectedArr}
+          saveArr={selectedSaveOptionsArr}
           searchChecked={searchChecked}
           selectedCheck={selectedItemsChecked}
           screenSizeInput={screenSizeInput}
@@ -134,6 +155,7 @@ const App = () => {
           onDragOver={onDragOver}
           onDragEnd={onDragEnd}
           id="selectedItemSelector"
+          onChangeSearch={onChangeSelectedSearch}
         />
       </div>
       <Settings
