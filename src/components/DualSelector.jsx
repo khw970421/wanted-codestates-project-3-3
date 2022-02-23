@@ -94,7 +94,6 @@ const DualSelector = ({
 
   const onBlurHandler = (e) => {
     if (e.target.tagName !== 'SPAN' && e.target.tagName !== 'LI') {
-      console.log('blur');
       setSelectedArr([]);
     }
   };
