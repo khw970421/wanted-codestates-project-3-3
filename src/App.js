@@ -1,7 +1,7 @@
 import DualSelector from "./components/DualSelector";
 import { useState } from "react";
 import emojiMenus from "./components/data";
-import './scss/App.scss';
+import "./scss/App.scss";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
 import Settings from "./components/Settings";
@@ -36,26 +36,31 @@ const App = () => {
   const [screenSizeInput, setScreenSizeInput] = useState([171, 300]);
 
   return (
-    <div id="App">
-      <div className="center-box">
+    <div id='App'>
+      <div className='center-box'>
         <DualSelector
           titleName={availableName}
           optionsArr={availableOptionsArr}
+          searchChecked={searchChecked}
         />
         <div>
           <button>
-            <HiChevronDoubleRight color="#333" size="18" />
+            <HiChevronDoubleRight color='#333' size='18' />
           </button>
           <button>
-            <HiChevronDoubleLeft color="#333"size="18" />
+            <HiChevronDoubleLeft color='#333' size='18' />
           </button>
           {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
           {/* <input onChange={onChangeAvailable} value={availableName} />
           <input onChange={onChangeSelected} value={selectedName} /> */}
         </div>
-        <DualSelector titleName={selectedName} optionsArr={selectedOptionsArr} />
+        <DualSelector
+          titleName={selectedName}
+          optionsArr={selectedOptionsArr}
+          searchChecked={searchChecked}
+        />
       </div>
-      <Settings 
+      <Settings
         titleInput={titleInput}
         setTitleInput={setTitleInput}
         setSearchChecked={setSearchChecked}
