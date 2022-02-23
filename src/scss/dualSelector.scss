@@ -63,6 +63,7 @@
 
 .selected-count {
   border-top: 1px solid $light-grey;
+  background-color: $white;
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -70,16 +71,16 @@
   display: block;
 }
 
-.selected-count-hidden {
+.hidden {
   display: none;
 }
 
-.XS{
+.XS {
   font-size: 14px;
 }
-.S{
+.S {
   font-size: 16px;
 }
-.M{
+.M {
   font-size: 18px;
 }
