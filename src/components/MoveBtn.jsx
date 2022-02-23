@@ -1,103 +1,80 @@
 import "./MoveBtn.css";
 import _ from "lodash";
+import { HiChevronDoubleLeft } from "react-icons/hi";
+import { HiChevronDoubleRight } from "react-icons/hi";
+import emojiMenus from "./data";
+import { useState } from "react";
 
 function MoveBtn({
-  emojiMenus,
-  availableSaveOptionsArr,
-  selectedSaveOptionsArr,
-  setSelectedOptionsArr,
+  availableOptionsArr,
+  selectedOptionsArr,
   setAvailableOptionsArr,
-  setSelectedSaveOptionsArr,
-  setAvailableSaveOptionsArr,
-  target,
-  setTarget,
+  setSelectedOptionsArr,
+  clickedAvailableArr,
+  clickedselectedArr,
+  setClickedAvailableArr,
+  setClickedselectedArr,
 }) {
   // 초기화
-  const initialization = () => {
-    const availableOptionsArr = emojiMenus.filter((val) => !val.visible);
-    const selectedOptionsArr = emojiMenus.filter((val) => val.visible);
-    setAvailableOptionsArr(availableOptionsArr);
-    setAvailableSaveOptionsArr(availableOptionsArr);
-    setSelectedOptionsArr(selectedOptionsArr);
-    setSelectedSaveOptionsArr(selectedOptionsArr);
+  const initialize = () => {
+    setAvailableOptionsArr(emojiMenus.filter((val) => !val.visible));
+    setSelectedOptionsArr(emojiMenus.filter((val) => val.visible));
   };
 
-  // 모두 selected로 옮김
-  const moveAllSelected = () => {
-    const res = availableSaveOptionsArr.map((val) => {
-      return { ...val, visible: true };
+  // selected options로 전체이동
+  const allSelected = () => {
+    // selected 로 전체 목록이 이동
+    const res = availableOptionsArr.map((el) => {
+      return { ...el, visible: true };
     });
-    // selectedOptionsArr : 기본으로 사용하는 렌더링 값
-    setSelectedOptionsArr([...selectedSaveOptionsArr, ...res]);
-    setSelectedSaveOptionsArr([...selectedSaveOptionsArr, ...res]);
-    setAvailableOptionsArr([]);
-    setAvailableSaveOptionsArr([]);
+    setAvailableOptionsArr([]); // 왼쪽
+    setSelectedOptionsArr([...selectedOptionsArr, ...res]); // 오른쪽
+
+    console.log(availableOptionsArr);
+    console.log(selectedOptionsArr);
   };
 
-  // 모두 available로 옮김
-  const moveAllAvailable = () => {
-    const res = selectedSaveOptionsArr.map((val) => {
-      return { ...val, visible: false };
+  // available options로 전체이동
+  const allAvailable = () => {
+    const res = selectedOptionsArr.map((el) => {
+      return { ...el, visible: false };
     });
-
-    // availableOptionsArr : 기본으로 사용하는 렌더링 값
-    setAvailableOptionsArr([...availableSaveOptionsArr, ...res]);
-    setAvailableSaveOptionsArr([...availableSaveOptionsArr, ...res]);
     setSelectedOptionsArr([]);
-    setSelectedSaveOptionsArr([]);
+    setAvailableOptionsArr([...availableOptionsArr, ...res]);
   };
 
-  // 선택한 것을 selected로 옮기기
-  const moveSelected = () => {
-    console.log(target);
-    let res = target.map((val) => {
-      return { ...val, visible: true };
-    });
-    console.log(target);
+  // selected option로 지정이동
 
-    const arr = availableSaveOptionsArr;
-    for (let i = 0; i < arr.length; i++) {
-      for (let el of res) {
-        if (arr[i].name === el.name) {
-          arr.splice(i, 1);
-        }
-      }
+  const Selected = () => {
+    console.log(clickedAvailableArr); // index를 포함한 배열 [];
+    console.log(clickedselectedArr);
+
+    for (let index of clickedAvailableArr) {
+      console.log("반복문 시작");
+      setSelectedOptionsArr([
+        ...selectedOptionsArr,
+        availableOptionsArr[index],
+      ]);
     }
-    console.log(arr);
-    setAvailableOptionsArr(arr);
-    setAvailableSaveOptionsArr(arr);
-    setSelectedOptionsArr([...selectedSaveOptionsArr, ...res]);
-    setSelectedSaveOptionsArr([...selectedSaveOptionsArr, ...res]);
-    setTarget([]);
-    // console.log(selectedSaveOptionsArr);
   };
 
-  // 선택한 것을 available로 옮기기
-  const moveAvailable = () => {
-    const res = target.map((val) => {
-      return { ...val, visible: false };
-    });
-    const arr = selectedSaveOptionsArr;
-    for (let i = 0; i < arr.length; i++) {
-      for (let el of res) {
-        if (arr[i].name === el.name) {
-          arr.splice(i, 1);
-        }
-      }
-    }
-    setAvailableOptionsArr([...availableSaveOptionsArr, ...res]);
-    setAvailableSaveOptionsArr([...availableSaveOptionsArr, ...res]);
-    setSelectedOptionsArr(arr);
-    setSelectedSaveOptionsArr(arr);
-    setTarget([]);
-  };
+  // available options로 지정이동
+  const Available = () => {};
   return (
     <div>
-      <button onClick={initialization}>초기화</button>
-      <button onClick={moveAllSelected}>selected로 모두 옮기기</button>
-      <button onClick={moveAllAvailable}>available로 모두 옮기기</button>
-      <button onClick={moveSelected}>selected로 선택한 것 옮기기</button>
-      <button onClick={moveAvailable}>available로 선택한 것 옮기기</button>
+      <button onClick={initialize}>초기화</button>
+      <button onClick={allAvailable}>
+        <HiChevronDoubleLeft color="#333" size="18" />
+      </button>
+      <button onClick={allSelected}>
+        <HiChevronDoubleRight color="#333" size="18" />
+      </button>
+
+      {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
+      {/* <input onChange={onChangeAvailable} value={availableName} />
+          <input onChange={onChangeSelected} value={selectedName} /> */}
+      <button onClick={Available}>왼쪽</button>
+      <button onClick={Selected}>오른쪽</button>
     </div>
   );
 }
