@@ -127,11 +127,11 @@ const DualSelector = ({
       <header>{titleName}</header>
       <ul>
         {list?.map((option, idx) => {
-          const { id, emoji, nameKo } = option;
+          const { emoji, nameKo } = option;
 
           return (
             <li
-              key={id}
+              key={idx}
               className={
                 selectedArr.includes(idx)
                   ? 'stop-dragging gray'
@@ -144,16 +144,6 @@ const DualSelector = ({
               onDragEnd={onDragEnd}
               draggable
             >
-              {/* <button
-                className={
-                  selectedArr.includes(idx)
-                    ? 'stop-dragging gray'
-                    : 'stop-dragging green'
-                }
-                onClick={(e) => onClickHandler(e, idx)}
-              >
-                {emoji}&nbsp;{nameKo}
-              </button> */}
               {emoji}&nbsp;{nameKo}
             </li>
           );
