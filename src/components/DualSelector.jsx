@@ -8,6 +8,7 @@ const DualSelector = ({
   setSelectedArr,
   searchChecked,
   selectedCheck,
+  itemSizeRadio
 }) => {
   // options는 props
   const [list, setList] = useState(optionsArr);
@@ -153,17 +154,7 @@ const DualSelector = ({
                 onDragEnd={onDragEnd}
                 draggable
               >
-                {/* <button
-                  className={
-                    selectedArr.includes(idx)
-                      ? 'stop-dragging gray'
-                      : 'stop-dragging green'
-                  }
-                  onClick={(e) => onClickHandler(e, idx)}
-                >
-                  {emoji}&nbsp;{nameKo}
-                </button> */}
-                {emoji}&nbsp;{nameKo}
+                <span className={itemSizeRadio}>{emoji}&nbsp;{nameKo}</span>
               </li>
             );
           })}
