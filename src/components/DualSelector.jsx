@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import "../scss/dualSelector.scss";
+import React, { useState, useEffect, useRef } from 'react';
+import '../scss/dualSelector.scss';
 
 const DualSelector = ({
   title,
@@ -10,14 +10,15 @@ const DualSelector = ({
   selectedCheck,
   screenSizeInput,
   itemSizeRadio,
+  onDragEnd,
+  onDragEnter,
+  onDragStart,
+  onDragOver,
+  id,
 }) => {
-  // options는 props
-  const [list, setList] = useState(optionsArr); // 아이템 목록
   //useRef를 통해 drag되는 아이템의 인덱스와 dragOver되는 아이템의 인덱스를 current에 저장한다.
   //드래깅 되는 아이템의 인덱스를 useRef객체의 current에 저장한다.
-  const dragItem = useRef();
   // 드래깅 되어 지나가는 아이템들의 인덱스를 useRef 객체의 current에 저장한다.
-  const dragOverItem = useRef();
   const wrapperRef = useRef(null);
 
   // 검색한 단어가 존재하는지 체크하고 이에따라 changeOptionsArr 함수 실행
@@ -25,27 +26,21 @@ const DualSelector = ({
     const res = optionsArr.filter(({ name }) => {
       return name.includes(target.value);
     });
-    setList(res);
+    // setList(res);
   };
-  useEffect(() => {
-    setList(optionsArr);
-  }, [optionsArr]);
-
 
   useEffect(() => {
-    document.addEventListener("mousedown", onBlurHandler);
+    document.addEventListener('mousedown', onBlurHandler);
     return () => {
-      document.removeEventListener("mousedown", onBlurHandler);
+      document.removeEventListener('mousedown', onBlurHandler);
     };
   }, []);
-  
 
   useEffect(() => {
     console.log(screenSizeInput);
     wrapperRef.current.style.width = `${screenSizeInput[0]}px`;
     wrapperRef.current.style.height = `${screenSizeInput[1]}px`;
-  }, [screenSizeInput])
-
+  }, [screenSizeInput]);
 
   const ctrlClick = (idx) => {
     // 이미 클릭 되어있는 item을 클릭할 때
@@ -109,38 +104,12 @@ const DualSelector = ({
 
   const onBlurHandler = (e) => {
     if (
-      e.target.tagName !== "SPAN" &&
-      e.target.tagName !== "LI" &&
-      e.target.tagName !== "BUTTON"
+      e.target.tagName !== 'SPAN' &&
+      e.target.tagName !== 'LI' &&
+      e.target.tagName !== 'BUTTON'
     ) {
       setSelectedArr([]);
     }
-  };
-
-  const onDragStart = (e, position) => {
-    dragItem.current = position;
-    e.target.classList.add("grabbing");
-    setSelectedArr([]);
-  };
-
-  const onDragEnter = (e, position) => {
-    dragOverItem.current = position;
-    const copyListItems = [...list];
-    const dragItemContent = copyListItems[dragItem.current];
-    // 얕은 복사로 만든 카피 배열에서 드래깅되는 아이템을 하나 제거해주고
-    copyListItems.splice(dragItem.current, 1);
-    // 카피 리스트 배열에서 드레깅되는 아이템이 지나간 아이템의 인덱스에 드레그된 아이템을 추가해준다.
-    copyListItems.splice(dragOverItem.current, 0, dragItemContent);
-    // 드래깅된 아이템의 장소를 드래그 오버된 아이템의 인덱스로 바꾸어준다.
-    dragItem.current = dragOverItem.current;
-    // 드래그 오버 아이템의 useRef객체의 current 값을 초기화해준다.
-    dragOverItem.current = null;
-    // 리스트를 새롭게 랜더링할 수 있도록 상태를 업데이트해준다.
-    setList(copyListItems);
-  };
-
-  const onDragEnd = (e) => {
-    e.target.classList.remove("grabbing");
   };
 
   return (
@@ -155,17 +124,17 @@ const DualSelector = ({
       <div className="selector-content">
         <header>{title}</header>
         <ul className="select-list">
-          {list.map((option, idx) => {
+          {optionsArr.map((option, idx) => {
             return (
               <li
                 key={idx}
                 className={
                   selectedArr.includes(idx)
-                    ? "stop-dragging gray"
-                    : "stop-dragging white"
+                    ? 'stop-dragging gray'
+                    : 'stop-dragging white'
                 }
                 onClick={(e) => onClickHandler(e, idx)}
-                onDragStart={(e) => onDragStart(e, idx)}
+                onDragStart={(e) => onDragStart(e, idx, id)}
                 onDragEnter={(e) => onDragEnter(e, idx)}
                 onDragOver={(e) => e.preventDefault()}
                 onDragEnd={onDragEnd}
@@ -179,12 +148,10 @@ const DualSelector = ({
           })}
         </ul>
         <div
-
-          className={selectedCheck ? "selected-count" : "selected-count-hidden"}
-
+          className={selectedCheck ? 'selected-count' : 'selected-count-hidden'}
         >
           <p>
-            {selectedArr.length} / {list.length}
+            {selectedArr.length} / {optionsArr.length}
           </p>
         </div>
       </div>
