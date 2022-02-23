@@ -1,4 +1,4 @@
-import "./MoveBtn.css";
+import "../scss/MoveBtn.scss";
 import _ from "lodash";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
