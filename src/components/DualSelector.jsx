@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../scss/dualSelector.scss';
+import React, { useEffect, useRef } from "react";
+import "../scss/dualSelector.scss";
 
 const DualSelector = ({
   title,
@@ -28,19 +28,17 @@ const DualSelector = ({
     const res = saveArr.filter(({ name }) => {
       return name.includes(target.value);
     });
-    console.log(res);
     onChangeSearch(res);
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', onBlurHandler);
+    document.addEventListener("mousedown", onBlurHandler);
     return () => {
-      document.removeEventListener('mousedown', onBlurHandler);
+      document.removeEventListener("mousedown", onBlurHandler);
     };
   }, []);
 
   useEffect(() => {
-    console.log(screenSizeInput);
     wrapperRef.current.style.width = `${screenSizeInput[0]}px`;
     wrapperRef.current.style.height = `${screenSizeInput[1]}px`;
   }, [screenSizeInput]);
@@ -90,7 +88,6 @@ const DualSelector = ({
   };
 
   const onClickHandler = (e, idx) => {
-    console.log(selectedArr);
     // ctrl 또는 command를 누르고 클릭 했을 때
     if (e.ctrlKey || e.metaKey) {
       ctrlClick(idx);
@@ -107,9 +104,9 @@ const DualSelector = ({
 
   const onBlurHandler = (e) => {
     if (
-      e.target.tagName !== 'SPAN' &&
-      e.target.tagName !== 'LI' &&
-      e.target.tagName !== 'BUTTON'
+      e.target.tagName !== "SPAN" &&
+      e.target.tagName !== "LI" &&
+      e.target.tagName !== "BUTTON"
     ) {
       setSelectedArr([]);
     }
@@ -120,7 +117,7 @@ const DualSelector = ({
       <input
         type="text"
         onChange={searchValue}
-        disabled={searchChecked ? true : false}
+        disabled={searchChecked ? false : true}
         className="search-input"
         placeholder="search"
       />
@@ -133,8 +130,8 @@ const DualSelector = ({
                 key={idx}
                 className={
                   selectedArr.includes(idx)
-                    ? 'stop-dragging gray'
-                    : 'stop-dragging white'
+                    ? "stop-dragging gray"
+                    : "stop-dragging white"
                 }
                 onClick={(e) => onClickHandler(e, idx)}
                 onDragStart={(e) => onDragStart(e, idx, id)}

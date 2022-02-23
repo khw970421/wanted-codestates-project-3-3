@@ -3,7 +3,6 @@ import _ from "lodash";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
 import emojiMenus from "./data";
-import { useState } from "react";
 
 function MoveBtn({
   availableOptionsArr,
@@ -78,7 +77,6 @@ function MoveBtn({
   const Available = () => {
     const arr = [];
     for (let index of clickedselectedArr) {
-      console.log("반복문 시작");
       arr.push(selectedOptionsArr[index]);
     }
     let arr2 = selectedOptionsArr.filter(
