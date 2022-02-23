@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import '../scss/dualSelector.scss';
+import React, { useEffect, useRef } from "react";
+import "../scss/dualSelector.scss";
 
 const DualSelector = ({
   title,
@@ -33,9 +33,9 @@ const DualSelector = ({
   };
 
   useEffect(() => {
-    document.addEventListener('mousedown', onBlurHandler);
+    document.addEventListener("mousedown", onBlurHandler);
     return () => {
-      document.removeEventListener('mousedown', onBlurHandler);
+      document.removeEventListener("mousedown", onBlurHandler);
     };
   }, []);
 
@@ -107,9 +107,9 @@ const DualSelector = ({
 
   const onBlurHandler = (e) => {
     if (
-      e.target.tagName !== 'SPAN' &&
-      e.target.tagName !== 'LI' &&
-      e.target.tagName !== 'BUTTON'
+      e.target.tagName !== "SPAN" &&
+      e.target.tagName !== "LI" &&
+      e.target.tagName !== "BUTTON"
     ) {
       setSelectedArr([]);
     }
@@ -120,7 +120,7 @@ const DualSelector = ({
       <input
         type="text"
         onChange={searchValue}
-        disabled={searchChecked ? true : false}
+        disabled={searchChecked ? false : true}
         className="search-input"
         placeholder="search"
       />
@@ -133,8 +133,8 @@ const DualSelector = ({
                 key={idx}
                 className={
                   selectedArr.includes(idx)
-                    ? 'stop-dragging gray'
-                    : 'stop-dragging white'
+                    ? "stop-dragging gray"
+                    : "stop-dragging white"
                 }
                 onClick={(e) => onClickHandler(e, idx)}
                 onDragStart={(e) => onDragStart(e, idx, id)}
