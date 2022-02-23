@@ -38,7 +38,6 @@ const App = () => {
     let filtered = emojiMenus.filter((el) => el.name === selectedOne);
 
     setTarget([...target, ...filtered]);
-
     console.log(target);
   };
 

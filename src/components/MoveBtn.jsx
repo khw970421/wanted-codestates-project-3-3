@@ -49,15 +49,27 @@ function MoveBtn({
 
   // 선택한 것을 selected로 옮기기
   const moveSelected = () => {
-    const res = target.map((val) => {
+    console.log(target);
+    let res = target.map((val) => {
       return { ...val, visible: true };
     });
+    console.log(target);
 
-    // setAvailableOptionsArr([]);
-    // setAvailableSaveOptionsArr([]);
+    const arr = availableSaveOptionsArr;
+    for (let i = 0; i < arr.length; i++) {
+      for (let el of res) {
+        if (arr[i].name === el.name) {
+          arr.splice(i, 1);
+        }
+      }
+    }
+    console.log(arr);
+    setAvailableOptionsArr(arr);
+    setAvailableSaveOptionsArr(arr);
     setSelectedOptionsArr([...selectedSaveOptionsArr, ...res]);
     setSelectedSaveOptionsArr([...selectedSaveOptionsArr, ...res]);
     setTarget([]);
+    // console.log(selectedSaveOptionsArr);
   };
 
   // 선택한 것을 available로 옮기기
@@ -65,9 +77,18 @@ function MoveBtn({
     const res = target.map((val) => {
       return { ...val, visible: false };
     });
-
+    const arr = selectedSaveOptionsArr;
+    for (let i = 0; i < arr.length; i++) {
+      for (let el of res) {
+        if (arr[i].name === el.name) {
+          arr.splice(i, 1);
+        }
+      }
+    }
     setAvailableOptionsArr([...availableSaveOptionsArr, ...res]);
     setAvailableSaveOptionsArr([...availableSaveOptionsArr, ...res]);
+    setSelectedOptionsArr(arr);
+    setSelectedSaveOptionsArr(arr);
     setTarget([]);
   };
   return (
