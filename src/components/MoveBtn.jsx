@@ -29,9 +29,6 @@ function MoveBtn({
     });
     setAvailableOptionsArr([]); // 왼쪽
     setSelectedOptionsArr([...selectedOptionsArr, ...res]); // 오른쪽
-
-    console.log(availableOptionsArr);
-    console.log(selectedOptionsArr);
   };
 
   // available options로 전체이동
@@ -46,33 +43,42 @@ function MoveBtn({
   // selected options로 지정이동
 
   const Selected = () => {
-    console.log(clickedAvailableArr); // index를 포함한 배열 [];
     const arr = [];
-    let arr2 = [...availableOptionsArr];
+
     for (let index of clickedAvailableArr) {
-      console.log("반복문 시작");
       arr.push(availableOptionsArr[index]);
     }
 
-    console.log(arr2);
-    setAvailableOptionsArr([...arr2]);
-    setSelectedOptionsArr([...selectedOptionsArr, ...arr]);
+    const res = arr.map((el) => {
+      return { ...el, visible: true };
+    });
+    let arr2 = availableOptionsArr.filter(
+      (el, index) => !clickedAvailableArr.includes(index)
+    );
+    setAvailableOptionsArr([...arr2]); // 왼쪽
+    setSelectedOptionsArr([...selectedOptionsArr, ...res]); // 오른쪽 부분
 
     // 선택해제 => 빈배열
+    setClickedAvailableArr([]);
   };
 
   // available options로 지정이동
   const Available = () => {
-    console.log(clickedselectedArr);
     const arr = [];
     for (let index of clickedselectedArr) {
       console.log("반복문 시작");
       arr.push(selectedOptionsArr[index]);
     }
-    console.log(arr);
-    setAvailableOptionsArr([...availableOptionsArr, ...arr]);
-
+    let arr2 = selectedOptionsArr.filter(
+      (el, index) => !clickedselectedArr.includes(index)
+    );
+    const res = arr.map((el) => {
+      return { ...el, visible: false };
+    });
+    setAvailableOptionsArr([...availableOptionsArr, ...res]);
+    setSelectedOptionsArr([...arr2]);
     // 선택해제 => 빈배열
+    setClickedselectedArr([]);
   };
   return (
     <div>

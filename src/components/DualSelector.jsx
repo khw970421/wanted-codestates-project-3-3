@@ -97,7 +97,11 @@ const DualSelector = ({
   };
 
   const onBlurHandler = (e) => {
-    if (e.target.tagName !== "SPAN" && e.target.tagName !== "LI") {
+    if (
+      e.target.tagName !== "SPAN" &&
+      e.target.tagName !== "LI" &&
+      e.target.tagName !== "BUTTON"
+    ) {
       setSelectedArr([]);
     }
   };
@@ -140,9 +144,7 @@ const DualSelector = ({
       <div className="selector-content">
         <header>{title}</header>
         <ul className="select-list">
-          {list?.map((option, idx) => {
-            const { emoji, nameKo } = option;
-
+          {list.map((option, idx) => {
             return (
               <li
                 key={idx}
@@ -159,7 +161,7 @@ const DualSelector = ({
                 draggable
               >
                 <span className={itemSizeRadio}>
-                  {emoji}&nbsp;{nameKo}
+                  {option.emoji}&nbsp;{option.nameKo}
                 </span>
               </li>
             );
