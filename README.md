@@ -36,11 +36,11 @@ $ npm run start
 - 타이틀 제목 수정
 - 하나씩만 옮기기
 - 아이템 크기 조절
-- 영역 크기 조절
+- 영역 크기 조절  
 ![setting](https://user-images.githubusercontent.com/87519250/155492107-7699cfd6-3fdf-41b8-b405-e67312052cc1.gif)
 
 ### 다중 선택
 - Shift키를 누르면 시작부터 끝까지 선택됨
-- Ctrl키를 누르면 동시에 다중 선택 가능
+- Ctrl키를 누르면 동시에 다중 선택 가능  
 ![다중](https://user-images.githubusercontent.com/87519250/155492135-152cf45a-12bb-49a5-a1a8-0a4ca36c6d67.gif)
 
