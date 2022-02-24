@@ -83,7 +83,6 @@ const DualSelector = ({
 
     setSelectedArr(selected);
   };
-
   const normalClick = (idx) => {
     if (selectedArr.includes(idx)) {
       const selected = selectedArr.filter((item) => item !== idx);
@@ -112,7 +111,7 @@ const DualSelector = ({
     if (
       e.target.tagName !== "SPAN" &&
       e.target.tagName !== "LI" &&
-      e.target.tagName !== "BUTTON"
+      e.target.tagName !== "svg"
     ) {
       setSelectedArr([]);
     }

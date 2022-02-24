@@ -2,6 +2,9 @@ import "../scss/MoveBtn.scss";
 import _ from "lodash";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { HiChevronDoubleRight } from "react-icons/hi";
+import { HiChevronLeft } from "react-icons/hi";
+import { HiChevronRight } from "react-icons/hi";
+import { HiRefresh } from "react-icons/hi";
 import emojiMenus from "./data";
 
 function MoveBtn({
@@ -76,7 +79,7 @@ function MoveBtn({
   // available options로 지정이동
   const Available = () => {
     const arr = [];
-
+  
     for (let index of clickedselectedArr) {
       arr.push(selectedOptionsArr[index]);
     }
@@ -94,20 +97,20 @@ function MoveBtn({
     setClickedselectedArr([]);
   };
   return (
-    <div>
-      <button onClick={initialize}>초기화</button>
-      <button onClick={allAvailable}>
+    <div className="MoveBtn-flex">
+      <button className="MoveBtn-Button" onClick={initialize}><HiRefresh color="#333" size="18" /></button>
+      <button className="MoveBtn-Button" onClick={allAvailable}>
         <HiChevronDoubleLeft color="#333" size="18" />
       </button>
-      <button onClick={allSelected}>
+      <button className="MoveBtn-Button" onClick={allSelected}>
         <HiChevronDoubleRight color="#333" size="18" />
       </button>
 
       {/* 환경설정에서 사용하는 input 태그 이벤트 예시 */}
       {/* <input onChange={onChangeAvailable} value={availableName} />
           <input onChange={onChangeSelected} value={selectedName} /> */}
-      <button onClick={Available}>왼쪽</button>
-      <button onClick={Selected}>오른쪽</button>
+      <button className="MoveBtn-Button" onClick={Available}><HiChevronLeft color="#333" size="18"/></button>
+      <button className="MoveBtn-Button" onClick={Selected}><HiChevronRight color="#333" size="18"/></button>
     </div>
   );
 }
