@@ -1,0 +1,98 @@
+@import "Main.scss";
+
+.dual-selector-wrap {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.selector-content {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  overflow: hidden;
+
+  header {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+}
+
+.search-input {
+  @include input-default;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 26px;
+}
+
+.select-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid $light-grey;
+  margin-bottom: 41px;
+  overflow: auto;
+
+  li {
+    border-top: 1px solid $light-grey;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  li:hover {
+    background-color: #ddd;
+  }
+}
+
+.gray {
+  background-color: #ddd;
+  color: #888;
+}
+
+.white {
+  background-color: $white;
+}
+
+.stop-dragging {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  padding: 5px 8px;
+}
+
+.selected-count {
+  border-top: 1px solid $light-grey;
+  background-color: $white;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  display: block;
+  
+  p {
+    margin: 10px 0;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.XS {
+  font-size: 14px;
+}
+.S {
+  font-size: 16px;
+}
+.M {
+  font-size: 18px;
+}
