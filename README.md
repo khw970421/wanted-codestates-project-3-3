@@ -34,10 +34,13 @@ $ npm run start
 
 ### 소메뉴
 - 타이틀 제목 수정
+- 검색창 활성여부
 - 하나씩만 옮기기
+- 선택된 아이템 갯수
 - 아이템 크기 조절
-- 영역 크기 조절  
-![setting](https://user-images.githubusercontent.com/87519250/155492107-7699cfd6-3fdf-41b8-b405-e67312052cc1.gif)
+- 영역 크기 조절   
+![setting](https://user-images.githubusercontent.com/87519250/155494486-9a719b65-cb54-4da2-8172-79a6ab9fc078.gif)
+
 
 ### 다중 선택
 - Shift키를 누르면 시작부터 끝까지 선택됨
